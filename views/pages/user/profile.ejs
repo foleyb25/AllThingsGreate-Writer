@@ -1,0 +1,155 @@
+
+
+<div>
+
+    <%- exposeLocalsToBrowser({keys: ['writer']}) %>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <div id="app" style="padding: 24px" v-cloak>
+    
+        <!-- ACCOUNT SETTINGS -->
+        <div style="margin-bottom: 8px; padding: 16px;
+            background-color: white">
+            <div style="font-weight: bold">
+                Account Settings
+            </div>
+
+            <div style="background-color: white; padding: 16px">
+
+                <div class="form-item">
+                    <div class='form-item-label'>
+                        Email address:
+                    </div>
+                    <div style="font-size: 14px">
+                        {{writer.emailAddress}}
+                    </div>
+                </div>
+
+                <div  class="form-item">
+                    <div class='form-item-label'>
+                        Full name:
+                    </div>
+                    <input type="text" v-model="writer.fullName"
+                        class="fullname-input">
+                </div>
+
+                <div  class="form-item">
+                    <div class='form-item-label'>
+                        Nickname:
+                    </div>
+                    <input type="text"
+                        class="fullname-input" v-model="writer.nickName">
+                </div>
+
+                <div class="form-item">
+                    <div class='form-item-label'>
+                        Bio:
+                    </div>
+                    <div style="font-size: 14px">
+                        <textarea v-model="writer.bio"
+                            style="font-size: 14px; padding: 8px; border-radius: 5px; 
+                                width: 300px;
+                                border: solid 1px rgb(206, 206, 206)">
+                        </textarea>
+                    </div>
+                </div>
+
+                <div class="form-item">
+                    <div class='form-item-label'>
+                        Profile Picture:
+                    </div>
+                    <div>
+                        <img class="center-cropped" 
+                            :src="writer.profileImageUrl ? writer.profileImageUrl : '/images/startup.png'">
+                        <div style="margin-top: 12px">
+                            <input type="file" v-on:change="handleprofilePicChange">
+                        </div>
+                    </div>
+                </div>
+
+                <button v-on:click="handleSave" :disabled="isSaving"
+                    v-bind:class="isSaving ? 'disabled-button save-button' : 'blue-button save-button'">
+                    Save
+                </button>
+
+            </div>
+        </div>
+    </div>
+    </div>
+    <style>
+        [v-cloak] { display:none; }
+    
+        .center-cropped {
+            object-position: center; /* Center the image within the element */
+            object-fit: cover;
+            width: 64px;
+            height: 64px;
+            border-radius: 100px;
+            border: solid 1px rgb(94, 94, 94);
+        }
+    
+        .blue-button {
+            background-color: dodgerblue
+        }
+    
+        .disabled-button {
+            background-color: rgb(201, 201, 201)
+        }
+    
+        .form-item-label {
+            font-size: 15px; font-weight: bold; margin-right: 16px; 
+            width: 140px; text-align: right
+        }
+    
+        .save-button {
+            flex: 1; width: 100%; 
+            color: white; font-weight: bold;
+            padding: 8px; border: solid; border-radius: 5px; font-size: 16px
+        }
+    
+        .form-item {
+            display: flex; align-items: center; margin-bottom: 16px
+        }
+    
+        .fullname-input {
+            font-size: 14px; padding: 8px; border-radius: 5px; 
+            border: solid 1px rgb(206, 206, 206)
+        }
+    </style>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    
+    <script>
+        const writer = window.SAILS_LOCALS.writer
+        // writer.profileImageUrl = '/images/startup.png'
+        const app = new Vue({
+            el: "#app",
+            data: {
+                writer: writer,
+                isSaving: false,
+                profilePicFile: null,
+            },
+            methods: {
+                handleSave: async function() {
+                    const formData = new FormData()
+                    formData.append('fullName', this.writer.fullName)
+                    formData.append('nickName', this.writer.nickName)
+                    formData.append('bio', this.writer.bio)
+                    formData.append('imagefile', this.profilePicFile)
+                    // fire off a post request to update writer
+                    try {
+                        await axios.post('/profile', formData)
+                        location.reload()
+                    } catch (err) {
+                        console.error(err.toString())
+                    }
+                },
+                handleprofilePicChange: function(event) {
+                    this.profilePicFile = event.target.files[0]
+                    this.writer.profileImageUrl = window.URL.createObjectURL(this.profilePicFile)
+                }
+            }
+        })
+    </script>
+
+</div>

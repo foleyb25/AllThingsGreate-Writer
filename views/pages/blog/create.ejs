@@ -1,0 +1,46 @@
+
+<script src="https://cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
+
+<div class="container-fluid pt-5 pb-5">
+    <form action="/blog" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" name="titleText" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="body">Body</label>
+        <textarea name="bodyText" cols="30" rows="10" class="form-control" required></textarea>
+    </div>
+    <div class="form-group">
+        <label for="category">Describe your blog with one word. If left blank it will default to 'AllThingsGreat'</label>
+        <input name="categoryText" type="text" class="form-control">
+    </div>
+    <div>
+        <img class="center-cropped" src="/images/startup.png">
+        <br>
+        <input name="imageFile" type="file" required>
+    </div>
+    <br><br>
+    <button
+        style="color: rgb(0, 0, 0); border-radius: 5px; border: solid 1px; margin-left: 12px">
+        Create
+    </button>
+    </form>
+</div>
+
+<script>
+    CKEDITOR.replace( 'bodyText' );
+    CKEDITOR.instances.bodyText.setData('<p>Enter your blog here...</p>', function() {
+        this.checkDirty();
+    })
+</script>
+
+<style>
+    .center-cropped {
+            object-position: center; /* Center the image within the element */
+            object-fit: cover;
+            width: 64px;
+            height: 64px;
+            border: solid 1px rgb(94, 94, 94);
+        }
+</style>

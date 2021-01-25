@@ -1,0 +1,16 @@
+<div class="container-fluid pt-5 pb-5">
+    <% if(blog.isReviewed) { %>
+        <h1>Blog Approved</h1>
+    <% } %>
+    <h1>Author: <%- blog.writer.fullName %></h1>
+    <H1><%- blog.title %></H1>
+    <div id="preview">
+        <%- blog.bodyHTML %>
+    </div>
+
+    <% if(!blog.isReviewed) { %> 
+        <form action="/blog/approve/<%- blog.id %>" method="POST">
+            <button style="background-color: teal;">Approve</button>
+        </form>
+    <% } %>
+</div>

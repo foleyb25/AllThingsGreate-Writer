@@ -1,0 +1,53 @@
+<script src="https://cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
+
+<div class="container-fluid pt-5 pb-5">
+    <form action="/blog/update/<%- blog.id %>"method="POST" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" name="titleText" class="form-control" value="<%- blog.title %>">
+    </div>
+    <div class="form-group">
+        <label for="body">Body</label>
+        <textarea name="bodyText" cols="30" rows="10" class="form-control"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="category">Describe your blog with one word. If left blank it will default to 'AllThingsGreat'</label>
+        <input name="categoryText" type="text" class="form-control" value="<%- blog.category %>">
+    </div>
+    <div>
+        <img class="center-cropped" src="<%- blog.imageUrl ? blog.imageUrl : '/images/startup.png' %>">
+        <br>
+        <input name="imageFile" type="file" disabled>
+    </div>
+    <br><br>
+    <button
+        style="color: rgb(0, 0, 0); border-radius: 5px; border: solid 1px; margin-left: 12px">
+        Update
+    </button>
+    </form>
+    <br>
+    <br>
+    <br>
+    <H1>Here is a preview of your blog</H1>
+    <div id="preview">
+        <%- blog.bodyHTML %>
+    </div>
+</div>
+
+<script>
+    const body = document.getElementById("preview").innerHTML
+    CKEDITOR.replace( 'bodyText' );
+    CKEDITOR.instances.bodyText.setData(body, function() {
+        this.checkDirty();
+    })
+</script>
+
+<style>
+    .center-cropped {
+            object-position: center; /* Center the image within the element */
+            object-fit: cover;
+            width: 64px;
+            height: 64px;
+            border: solid 1px rgb(94, 94, 94);
+        }
+</style>

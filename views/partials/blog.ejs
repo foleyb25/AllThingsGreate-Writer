@@ -1,0 +1,29 @@
+<!-- Check Styling for this partial in views/pages/homepage -->
+    <div class="article-box">
+        <div class="image-box">
+            <img :src="blog.imageUrl" alt="" style="width: 100%; height: 100%">
+        </div>
+        <div class="title-box">
+            <p class="title-p">{{blog.title}}</p>
+        </div>
+        <div class="under-box">
+            <div class="author-box">
+                    <p v-if='blog.writer.nickName == ""'class="author-p">{{blog.writer.fullName}}</p>
+                    <p v-if='blog.writer.nickName != ""'class="author-p">{{blog.writer.nickName}}</p>
+               
+            </div>
+            <div class="rating-box">
+                <p class="rating-p">Rat:</p>
+            </div>
+            <div class="category-box">
+                <p class="category-p">Cat: {{blog.category}} </p>
+            </div>
+            <div class="timestamp-box">
+                <!-- Can use .toLocaleTimeString -->
+                <p class="p-timestamp">{{new Date(blog.createdAt).toLocaleDateString()}}</p>
+            </div>
+        </div> 
+    </div>
+
+  
+    

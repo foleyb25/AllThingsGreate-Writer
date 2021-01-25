@@ -1,0 +1,246 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div class="container-fluid pt-5 pb-5">
+  <h1 class="text-center">Welcome <%= me.fullName %></h1>
+    <p class="text-center">Here is a list of your blogs</p>
+    <div class="col text-center">
+        <a href="/blog/create" class="btn btn-light">Add New Blog</a>
+    </div>  
+
+    <div id="app" v-cloak style="padding: 24px">
+
+        <!-- modal container -->
+        <div v-if="shouldShowDeleteConfirmation" class="modal-container">
+            <div class="modal-form">
+                <div>
+                    Are you sure you want to delete {{selectedBlogToDelete.title}}?
+                </div>
+
+                <div style="margin-top: 16px; display: flex">
+                    <div style="flex: 1"></div>
+                    <button v-on:click="shouldShowDeleteConfirmation = false">Cancel</button>
+                    <button v-on:click="confirmDelete()" 
+                        v-bind:class="[isDeletingBlog ? 'gray' : 'red']"
+                        style="color: white; 
+                        margin-left: 16px;">Delete</button>
+                </div>
+            </div>            
+        </div>
+
+        <!-- Blog posts -->
+        <div>
+            <div v-for="blog in blogs">
+                <a :href="'/blog/edit/' +blog.id">
+                    <%- partial('../partials/blog') %>
+                </a>
+                <div style="text-align: center; align-content: center;">
+                    <button v-on:click="deleteBlog(blog)">Delete Blog</button>
+                    <div v-if="!blog.isReviewed" style="background-color: rgb(216, 212, 4); width: 30%; margin: auto; margin-top: 8px;
+                    border-radius: 8px;">
+                        Needs Reviewed
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- exposeLocalsToBrowser({keys: ['blogs']}) %>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script>
+    const App = new Vue({
+        el: '#app',
+        data: {
+            blogs: window.SAILS_LOCALS.blogs,
+            shouldShowDeleteConfirmation: false,
+            selectedBlotToDelete: null,
+            isDeletingBlog: false,
+
+            // Blog creation State variables
+            isCreatingBlog: false,
+            blogBodyText: null,
+            blogFileImageSource: null,
+            selectedFile: null,
+            shouldShowBlogForm: false,
+        },
+        methods: {
+            createBlog: async function() {
+                // Before sending our POST request, we create FormData with postBody 
+                // and imagefile for the server to consume
+                const formData = new FormData()
+                formData.append("blogBody", this.blogBodyText)
+                formData.append('imagefile', this.selectedFile)
+                this.isCreatingBlog = true
+                try {
+                    await axios.post('/blog', formData)
+                    location.reload()
+                } catch (err) {
+                    this.isCreatingBlog = false
+                    console.error(err.toString())
+                }
+            },
+            // when file selection happens, keep track of selectedFile
+            handleFileChange: function(event) {
+                this.selectedFile = event.target.files[0]
+                this.blogFileImageSource = window.URL.createObjectURL(this.selectedFile)
+            },
+
+            confirmDelete: async function() {
+                const blogId = this.selectedBlogToDelete.id
+
+                try {
+                    this.isDeletingBlog = true
+                    await axios.delete(`/blog/${blogId}`)
+                    this.shouldShowDeleteConfirmation = false
+                    this.blogs = this.blogs.filter(p => {
+                        return p.id != this.selectedBlogToDelete.id
+                    })
+                    this.isDeletingBlog = false
+                } catch (err) {
+                    this.isDeletingBlog = false
+                    console.error(err.toString())
+                }
+            },
+            deleteBlog: async function(blog) {
+                this.selectedBlogToDelete = blog
+                this.shouldShowDeleteConfirmation = true
+
+                return 
+            },
+        }
+    })
+</script>
+
+<style>
+    [v-cloak] { display:none; }
+
+    .article-box {
+        margin: 10px auto;
+        width: 472pt;
+        height: 118pt;
+        transition: transform .2s;
+        border-style: solid;
+        border-width: 1px;
+    }
+
+    .article-box:hover {
+        transform: scale(1.02);
+    }
+
+    a {
+        color: black;
+        text-decoration: none
+    }
+
+    .title-p {
+        padding-top: 8px;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .article-box > div {
+        vertical-align: top;
+        display: inline-block;
+    }
+
+    .under-box {
+        float: left;
+        height: 26pt;
+        width: 100%;
+        overflow: hidden;
+        border-top: solid;
+        border-width: 1px;
+    }
+
+    .author-box {
+        float: left;
+        background-color: #FFFFFF;
+        height: 100%;
+        width: 25%;
+        font-weight: 750;
+    }
+
+    .category-box {
+        float: left;
+        background-color:#FFFFFF;
+        height: 100%;
+        width: 25%;
+    }
+
+    .rating-box {
+        float: left;
+        background-color: #FFFFFF;
+        height: 100%;
+        width: 25%;
+    }
+
+    .timestamp-box {
+        background-color: #FFFFFF;
+        color: #818181;
+        height: 100%;
+        width: auto;
+        overflow: hidden;
+        font-weight: 150;
+        font-style: italic;
+        text-align: center;
+    }
+
+    .image-box {
+        float: left;
+        width: 100pt;
+        height: 90pt; 
+        background-color: rgb(167, 168, 166);
+        border-right: solid;
+        border-width: 1px;
+    }
+
+    .title-box {
+        float: left;
+        text-overflow: ellipsis;
+        word-wrap: break-word;
+        overflow: hidden;
+        width: 343pt;
+        height: 90pt;
+        background-color: #FFFFFF;
+        font-weight: 750;
+    }
+
+    .modal-container {
+        width: 100%; height: 100%;
+        top: 0; left: 0;
+        position: fixed;
+        padding-top: 200px;
+        background-color: rgba(0, 0, 0, 0.8)
+    }
+
+    .modal-form {
+        margin: auto; background-color: white; 
+        width: 50%; padding: 16px;
+        border-radius: 5px
+    }
+
+    .blue {
+        background-color: dodgerblue;
+    }
+
+    .red {
+        background-color: red; 
+    }
+
+    .gray {
+        background-color: darkgray
+    }
+
+    .center-cropped {
+            object-position: center; /* Center the image within the element */
+            object-fit: cover;
+            width: 50px;
+            height: 50px;
+            border-radius: 100px;
+            border: solid 1px rgb(94, 94, 94);
+        }
+</style>
+
+    

@@ -1,0 +1,140 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div class="container-fluid pt-5 pb-5">
+    <h1 class="text-center">Blogs Ready For Review</h1>
+    <div id="app" v-cloak style="padding: 24px">
+
+        <!-- Blog posts -->
+        <div>
+            <div v-for="blog in blogs">
+                <a :href="'/blog/review/'+blog.id">
+                <%- partial('../../partials/blog') %>
+                </a>
+                <div :v-if="blog.isReviewed" style="background-color: rgb(216, 212, 4); width: 30%; margin: auto; margin-top: 8px;
+                    border-radius: 8px; text-align: center;">
+                        Needs Reviewed
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- exposeLocalsToBrowser({keys: ['blogs']}) %>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script>
+    const App = new Vue({
+        el: '#app',
+        data: {
+            blogs: window.SAILS_LOCALS.blogs,
+            shouldShowDeleteConfirmation: false,
+            selectedBlogToDelete: null,
+            isDeletingBlog: false,
+
+            // Blog creation State variables
+            isCreatingBlog: false,
+            blogBodyText: null,
+            blogFileImageSource: null,
+            selectedFile: null,
+            shouldShowBlogForm: false,
+        },
+        methods: {
+        }
+    })
+</script>
+
+<style>
+    [v-cloak] { display:none; }
+
+    .article-box {
+        margin: 10px auto;
+        width: 472pt;
+        height: 118pt;
+        transition: transform .2s;
+        border-style: solid;
+        border-width: 1px;
+    }
+
+    .article-box:hover {
+        transform: scale(1.02);
+    }
+
+    a {
+        color: black;
+        text-decoration: none
+    }
+
+    .title-p {
+        padding-top: 8px;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .article-box > div {
+        vertical-align: top;
+        display: inline-block;
+    }
+
+    .under-box {
+        float: left;
+        height: 26pt;
+        width: 100%;
+        overflow: hidden;
+        border-top: solid;
+        border-width: 1px;
+    }
+
+    .author-box {
+        float: left;
+        background-color: #FFFFFF;
+        height: 100%;
+        width: 25%;
+        font-weight: 750;
+    }
+
+    .category-box {
+        float: left;
+        background-color:#FFFFFF;
+        height: 100%;
+        width: 25%;
+    }
+
+    .rating-box {
+        float: left;
+        background-color: #FFFFFF;
+        height: 100%;
+        width: 25%;
+    }
+
+    .timestamp-box {
+        background-color: #FFFFFF;
+        color: #818181;
+        height: 100%;
+        width: auto;
+        overflow: hidden;
+        font-weight: 150;
+        font-style: italic;
+        text-align: center;
+    }
+
+    .image-box {
+        float: left;
+        width: 100pt;
+        height: 90pt; 
+        background-color: rgb(167, 168, 166);
+        border-right: solid;
+        border-width: 1px;
+    }
+
+    .title-box {
+        float: left;
+        text-overflow: ellipsis;
+        word-wrap: break-word;
+        overflow: hidden;
+        width: 343pt;
+        height: 90pt;
+        background-color: #FFFFFF;
+        font-weight: 750;
+    }
+</style>
