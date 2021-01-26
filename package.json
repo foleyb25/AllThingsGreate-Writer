@@ -41,7 +41,7 @@
     "type": "git",
     "url": "git://github.com/foleyb25/AllThingsGreate-Writer.git"
   },
-  "author": "brianvoong",
+  "author": "brian foley",
   "license": "",
   "engines": {
     "node": "^10.15"

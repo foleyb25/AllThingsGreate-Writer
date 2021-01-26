@@ -370,7 +370,8 @@ module.exports = {
   *                                                                         *
   ***************************************************************************/
   custom: {
-    baseUrl: 'https://allthingsgreat-writer.herokuapp.com/',
+    baseUrl: 'localhost:1337/',
+    //baseUrl: 'https://allthingsgreat-writer.herokuapp.com/',
     internalEmailAddress: 'foleyb25@gmail.com',
 
     // mailgunDomain: 'mg.example.com',
