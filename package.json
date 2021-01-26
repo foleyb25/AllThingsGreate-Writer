@@ -1,5 +1,5 @@
 {
-  "name": "webapp-social",
+  "name": "allthingsgreat-writer",
   "private": true,
   "version": "0.0.0",
   "description": "a Sails application",
@@ -39,7 +39,7 @@
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/brianvoong/webapp-social.git"
+    "url": "git://github.com/foleyb25/AllThingsGreate-Writer.git"
   },
   "author": "brianvoong",
   "license": "",
