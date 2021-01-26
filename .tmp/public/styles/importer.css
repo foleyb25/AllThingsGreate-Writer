@@ -232,6 +232,12 @@ body {
 #page-footer .xs-only {
   display: none;
 }
+.mobile-nav {
+  display: none;
+}
+.desktop-nav {
+  display: inline-block;
+}
 @media (max-width: 800px) {
   #page-wrap {
     padding-bottom: 75px;
@@ -262,6 +268,18 @@ body {
     height: 85px;
   }
   #page-wrap #page-footer .xs-only {
+    display: block;
+  }
+  .mobile-nav {
+    display: block;
+  }
+  .desktop-nav {
+    display: none;
+  }
+  .icon-bar {
+    width: 20px;
+    border-bottom: 2px solid #3b95a1;
+    padding: 1px;
     display: block;
   }
 }

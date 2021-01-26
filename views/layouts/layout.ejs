@@ -47,26 +47,52 @@
     <div id="page-wrap">
       <header id="page-header" class="navbar navbar-expand-sm navbar-dark bg-dark flex-column flex-md-row justify-content-between">
         <a class="navbar-brand mr-0" href="/"><img class="logo" alt="All Things Great logo" src="/images/logo.png"/></a>
+        <div class="desktop-nav">
         <div class="navbar-nav flex-row">
           <!-- LOGGED-IN NAVIGATION -->
           <% if(me) { %>
           <a class="nav-item nav-link ml-2 ml-md-0 mr-2 mr-md-0" href="/">Home</a>
           <a class="nav-item nav-link ml-2 ml-md-0 mr-2 mr-md-0" href="/profile">Profile</a>
-          <a class="nav-item nav-link ml-2 ml-md-0 mr-2 mr-md-0" href="/contact">Help</a>
+          <!-- <a class="nav-item nav-link ml-2 ml-md-0 mr-2 mr-md-0" href="/contact">Help</a> -->
           <!-- Only in desktop nav -->
           <div class="nav-item dropdown d-none d-sm-block">
             <a class="nav-link dropdown-toggle" id="header-account-menu-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
+            
             <div class="dropdown-menu account-menu" aria-labelledby="header-account-menu-link">
               <a class="dropdown-item" href="/account">Settings</a>
               <a class="dropdown-item" href="/logout">Sign out</a>
             </div>
           </div>
-          <!-- Only in mobile nav -->
-          <a class="nav-item nav-link ml-2 mr-2 d-block d-sm-none" href="/account">Account Settings</a>
-          <a class="nav-item nav-link ml-2 mr-2 d-block d-sm-none" href="/logout">Sign out</a>
           <% if(me.isSuperAdmin) { %>
             <a class="nav-item nav-link ml-2 ml-md-0 mr-2 mr-md-0" style="background-color: rgb(26, 90, 90);"href="/blog/review">Review Blog</a>
           <% } %>
+        </div>
+      </div> 
+        <div class="mobile-nav">
+          <!-- Only in mobile nav -->
+          <nav class="navbar container" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main_nav_container" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <div class="icon-bar"></div>
+                    <div class="icon-bar"></div>
+                    <div class="icon-bar"></div>
+                </button>
+            </div>      
+        
+            <!-- Note the ID here is the data-target of the button!! Critically important-->
+            <div id="main_nav_container" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a class="nav-item nav-link ml-2 ml-md-0 mr-2 mr-md-0" href="/">Home</a></li>
+                    <li><a class="nav-item nav-link ml-2 ml-md-0 mr-2 mr-md-0" href="/profile">Profile</a></li>
+                    <li><a class="nav-item nav-link ml-2 mr-2 d-block d-sm-none" href="/account">Account Settings</a></li>
+                    <li><a class="nav-item nav-link ml-2 mr-2 d-block d-sm-none" href="/logout">Sign out</a></li>
+                    <% if(me.isSuperAdmin) { %>
+                    <li><a class="nav-item nav-link ml-2 ml-md-0 mr-2 mr-md-0" style="background-color: rgb(26, 90, 90);"href="/blog/review">Review Blog</a></li>
+                    <% } %>
+                </ul>
+            </div>
+        </nav>
           <% } else { %>
 
           <% } %>

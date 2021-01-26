@@ -42,6 +42,14 @@ html, body {
   }
 }
 
+.mobile-nav {
+  display: none;
+}
+
+.desktop-nav {
+  display: inline-block;
+}
+
 body.detected-mobile {
   // Above and beyond the media queries below, this selector (which relies on
   // `parasails` automatically attaching this class, if appropriate) contains
@@ -81,4 +89,20 @@ body.detected-mobile {
       }
     }
   }
+
+  .mobile-nav {
+    display: block;
+  }
+
+  .desktop-nav {
+    display: none;
+  }
+
+  .icon-bar {
+    width: 20px;
+    border-bottom: 2px solid rgb(59, 149, 161);
+    padding: 1px;
+    display: block;
+  }
+
 }
