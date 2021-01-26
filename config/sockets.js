@@ -11,6 +11,7 @@
 
 module.exports.sockets = {
 
+  onlyAllowOrigins: []
   /***************************************************************************
   *                                                                          *
   * `transports`                                                             *
