@@ -118,6 +118,7 @@
 
     .article-box {
         margin: 10px auto;
+        /* width: 100%;   */
         width: 472pt;
         height: 118pt;
         transition: transform .2s;
@@ -160,6 +161,8 @@
         height: 100%;
         width: 25%;
         font-weight: 750;
+        
+    
     }
 
     .category-box {
@@ -189,6 +192,7 @@
 
     .image-box {
         float: left;
+        /* width: 25%; */
         width: 100pt;
         height: 90pt; 
         background-color: rgb(167, 168, 166);
@@ -201,6 +205,7 @@
         text-overflow: ellipsis;
         word-wrap: break-word;
         overflow: hidden;
+        /* width: 75%; */
         width: 343pt;
         height: 90pt;
         background-color: #FFFFFF;
@@ -240,7 +245,21 @@
             height: 50px;
             border-radius: 100px;
             border: solid 1px rgb(94, 94, 94);
+    }
+
+    @media (max-width: 475px) {
+        .article-box {
+            width: 100%;
         }
+
+        .image-box {
+            width: 25%;
+        }
+
+        .title-box {
+            width: 75%;
+        }
+    }
 </style>
 
     
