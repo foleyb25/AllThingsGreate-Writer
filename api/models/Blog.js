@@ -27,7 +27,7 @@ module.exports = {
         },
 
         title: {
-            type: 'text', required: true
+            type: 'string', required: true
         },
 
         bodyHTML: {
