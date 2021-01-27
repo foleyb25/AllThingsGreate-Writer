@@ -7,7 +7,7 @@ module.exports = async function(req, res) {
     const previewText = req.body.previewText
     try {
         await Blog.update({id: blogId}).set({bodyHTML: bodyText, title: titleText,
-        category: categoryText, previewText: previewText,
+        category: categoryText, previewText: previewText, isReviewed: false,
         })
         const blog = await Blog.findOne({id: blogId})
         const sanitizedBlog = JSON.parse(JSON.stringify(blog))

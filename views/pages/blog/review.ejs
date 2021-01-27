@@ -31,6 +31,8 @@
             shouldShowDeleteConfirmation: false,
             selectedBlogToDelete: null,
             isDeletingBlog: false,
+            // colorpct: window.SAILS_LOCALS.pct,
+            colorpct: 50,
 
             // Blog creation State variables
             isCreatingBlog: false,
@@ -40,6 +42,11 @@
             shouldShowBlogForm: false,
         },
         methods: {
+        },
+        computed: {
+            createBackgroundGradient() {
+                return `linear-gradient(to right, yellow ${this.colorpct}%, white ${this.colorpct}%)`;
+            }
         }
     })
 </script>
