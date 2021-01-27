@@ -4,9 +4,10 @@ module.exports = async function(req, res) {
     const bodyText = req.body.bodyText
     const titleText = req.body.titleText
     const categoryText = req.body.categoryText
+    const previewText = req.body.previewText
     try {
         await Blog.update({id: blogId}).set({bodyHTML: bodyText, title: titleText,
-        category: categoryText,
+        category: categoryText, previewText: previewText,
         })
         const blog = await Blog.findOne({id: blogId})
         const sanitizedBlog = JSON.parse(JSON.stringify(blog))

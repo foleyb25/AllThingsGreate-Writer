@@ -7,6 +7,10 @@
         <input type="text" name="titleText" class="form-control" value="<%- blog.title %>">
     </div>
     <div class="form-group">
+        <label for="preview">Preview Text</label>
+        <textarea name="previewText" minlength="350" rows="4" cols="100" class="form-control" disabled><%- blog.previewText %></textarea>
+    </div>
+    <div class="form-group">
         <label for="body">Body</label>
         <textarea name="bodyText" cols="30" rows="10" class="form-control"></textarea>
     </div>

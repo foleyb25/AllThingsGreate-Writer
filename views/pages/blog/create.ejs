@@ -1,10 +1,15 @@
 <script src="https://cdn.ckeditor.com/4.4.5.1/full-all/ckeditor.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 
 <div class="container-fluid pt-5 pb-5">
     <form action="/blog" method="post" enctype="multipart/form-data">
     <div class="form-group">
         <label for="title">Title</label>
-        <input type="text" name="titleText" class="form-control" required>
+        <input type="textarea" name="titleText" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="preview">Preview Text</label>
+        <textarea name="previewText" minlength="350" rows="4" cols="100" class="form-control"></textarea>
     </div>
     <div class="form-group">
         <label for="body">Body</label>
@@ -28,9 +33,7 @@
 </div>
 
 <script>
-    // CKEDITOR.plugins.addExternal('youtube', '../../../CKPlugins/youtube', 'plugin.js')
     CKEDITOR.replace( 'bodyText', {
-        // extraPlugins: 'youtube',
     } );
     CKEDITOR.instances.bodyText.setData('<p>Enter your blog here...</p>', function() {
         this.checkDirty();

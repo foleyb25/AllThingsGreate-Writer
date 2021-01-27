@@ -7,6 +7,9 @@
         <div class="title-box">
             <p class="title-p">{{blog.title}}</p>
         </div>
+        <div class="preview-box line-clamp">
+            <p class="preview-p">{{blog.previewText}}</p>
+        </div>
         <div class="under-box">
             <div class="author-box">
                     <p v-if='blog.writer.nickName == ""'class="author-p">{{blog.writer.fullName}}</p>

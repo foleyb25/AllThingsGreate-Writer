@@ -10,6 +10,7 @@ module.exports = {
             category: this.category,
             createdAt: this.createdAt,
             updatedAt: this.updatedAt,
+            previewText: this.previewText,
           }
     },
 
@@ -46,6 +47,11 @@ module.exports = {
         category: {
             type: 'string',
             defaultsTo: "AllThingsGreat",
-        }
+        },
+        
+        previewText: {
+            type: 'string',
+            defaultsTo: '',
+        },
     }
 }

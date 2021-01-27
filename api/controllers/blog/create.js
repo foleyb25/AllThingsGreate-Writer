@@ -1,6 +1,7 @@
 module.exports = async function(req, res) {
     const blogBody = req.body.bodyText
     const blogTitle = req.body.titleText
+    const blogPreview = req.body.previewText
     var blogCategory = req.body.categoryText
 
     //if no category was input, default to 'all things great'
@@ -30,6 +31,7 @@ module.exports = async function(req, res) {
                 title: blogTitle,
                 writer: userId,
                 imageUrl: fileUrl,
+                previewText: blogPreview,
                 category: blogCategory,
             }).fetch()
             

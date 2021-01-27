@@ -1,162 +1,187 @@
 #homepage {
 
-  .hero {
-    padding-top: 100px;
-    padding-bottom: 25px;
-    color: @brand;
-    position: relative;
-    .hero-image {
-      width: 220px;
-      height: 170px;
-      margin-left: auto;
-      margin-right: auto;
-      position: relative;
-      img {
-        position: absolute;
-      }
-      .sky {
-        width: 170px;
-        left: 25px;
-        top: 25px;
-      }
-      .cloud {
-        .fly-fade();
-        width: 80px;
-        &.cloud-1 {
-          top: 55px;
-          left: -40px;
-          opacity: 0;
-          .animation-delay(3.5s);
-        }
-        &.cloud-2 {
-          top: 45px;
-          left: -40px;
-          opacity: 0;
-        }
-      }
-      .ship {
-        .skid();
-        width: 160px;
-        bottom: 50px;
-        left: 18px;
-      }
-      .water {
-        width: 170px;
-        bottom: 40px;
-        left: 25px;
-      }
-    }
-    h1 {
-      padding-bottom: 50px;
-    }
-    .more-info-text {
-      .bob();
-      cursor: pointer;
-      margin-top: 75px;
-      position: absolute;
-      width: 100%;
-      bottom: 25px;
-      left: 0px;
-      .text {
-        font-size: 16px;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        font-weight: 700;
-      }
-      .icon {
-        font-size: 20px;
-      }
-    }
-  }
+  [v-cloak] { display:none; }
 
-  .about-wrapper {
-    background-color: #eef5f9b8;
-    .about {
-      padding-top: 75px;
-      padding-bottom: 50px;
-      p {
-        max-width: 800px;
-        margin-left: auto;
-        margin-right: auto;
-      }
+    .article-box {
+        margin: 10px auto;
+        /* width: 100%;   */
+        width: 472pt;
+        height: 118pt;
+        transition: transform .2s;
+        border-style: solid;
+        border-width: 1px;
     }
-    .features {
-      padding-top: 25px;
-      padding-bottom: 100px;
-      .feature {
-        .icon {
-          background-color: @brand;
-          color: @accent-white;
-          width: 75px;
-          height: 75px;
-          margin-left: auto;
-          margin-right: auto;
-          margin-bottom: 25px;
-          border-radius: 50%;
-          font-size: 35px;
-          line-height: 75px;
-          text-align: center;
-        }
-      }
-    }
-  }
 
-
-  .setup {
-    padding-top: 75px;
-    .step {
-      margin-top: 75px;
-      margin-bottom: 75px;
-      padding-left: 240px;
-      position: relative;
-      .step-image {
-        position: absolute;
-        left: 0px;
-        top: 0px;
-        width: 140px;
-        img {
-          width: 100%;
-        }
-      }
+    .article-box:hover {
+        transform: scale(1.02);
     }
-  }
 
-  .pep-talk {
-    padding-top: 50px;
-    padding-bottom: 100px;
-    p {
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-    }
     a {
-      border-bottom: none;
+        color: black;
+        text-decoration: none
     }
-  }
 
-  &.uninitialized {
-    height: 100%;
-    .hero, .about, .features, .setup, .pep-talk {
-      opacity: 0;
+    .title-p {
+        padding-top: 8px;
+        padding-left: 8px;
+        padding-right: 8px;
     }
-  }
 
-  @media (max-width: 991px) {
-    .setup {
-      .step {
-        padding-left: 0px;
-        .step-image {
-          display: none;
+    .article-box > div {
+        vertical-align: top;
+        display: inline-block;
+    }
+
+    .under-box {
+        float: left;
+        height: 26pt;
+        width: 100%;
+        overflow: hidden;
+        border-top: solid;
+        border-width: 1px;
+    }
+
+    .author-box {
+        float: left;
+        background-color: #FFFFFF;
+        height: 100%;
+        width: 25%;
+        font-weight: 750;
+        
+    
+    }
+
+    .category-box {
+        float: left;
+        background-color:#FFFFFF;
+        height: 100%;
+        width: 25%;
+    }
+
+    .rating-box {
+        float: left;
+        background-color: #FFFFFF;
+        height: 100%;
+        width: 25%;
+    }
+
+    .timestamp-box {
+        background-color: #FFFFFF;
+        color: #818181;
+        height: 100%;
+        width: auto;
+        overflow: hidden;
+        font-weight: 150;
+        font-style: italic;
+        text-align: center;
+    }
+
+    .image-box {
+        float: left;
+        /* width: 25%; */
+        width: 100pt;
+        height: 90pt; 
+        background-color: rgb(167, 168, 166);
+        border-right: solid;
+        border-width: 1px;
+    }
+
+    .title-box {
+        float: left;
+        text-overflow: ellipsis;
+        word-wrap: break-word;
+        overflow: hidden;
+        /* width: 75%; */
+        width: 343pt;
+        height: 20pt;
+        background-color: #FFFFFF;
+        font-weight: 750;
+    }
+
+    .preview-box {
+        float: left;
+        text-overflow: ellipsis;
+        word-wrap: break-word;
+        overflow: hidden;
+        width: 343pt;
+        height: 70pt;
+        background-color: #ffffff;
+        font-weight: 750;
+    }
+
+    .preview-p {
+        font-size: 13px;
+        padding-top: 8px;
+        padding-left: 8px;
+        padding-right: 8px;
+        font-weight: 150;
+    }
+
+    .line-clamp p{
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical; 
+      overflow: hidden; 
+    }
+
+    .modal-container {
+        width: 100%; height: 100%;
+        top: 0; left: 0;
+        position: fixed;
+        padding-top: 200px;
+        background-color: rgba(0, 0, 0, 0.8)
+    }
+
+    .modal-form {
+        margin: auto; background-color: white; 
+        width: 50%; padding: 16px;
+        border-radius: 5px
+    }
+
+    .blue {
+        background-color: dodgerblue;
+    }
+
+    .red {
+        background-color: red; 
+    }
+
+    .gray {
+        background-color: darkgray
+    }
+
+    .center-cropped {
+            object-position: center; /* Center the image within the element */
+            object-fit: cover;
+            width: 50px;
+            height: 50px;
+            border-radius: 100px;
+            border: solid 1px rgb(94, 94, 94);
+    }
+
+    @media (max-width: 475px) {
+        .article-box {
+            width: 100%;
         }
-      }
+
+        .image-box {
+            width: 25%;
+        }
+
+        .title-box {
+            width: 75%;
+        }
+
+        #app {
+            padding: 0px !important;
+        }
+
+        .container-fluid {
+            padding: 0px;
+        }
+
+        .container {
+            padding: 1px;
+        }
     }
-  }
-  @media (max-width: 450px) {
-    .hero {
-      padding-top: 50px;
-        h1.display-4 {
-        font-size: 34px;
-      }
-    }
-  }
 }
