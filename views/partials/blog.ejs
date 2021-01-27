@@ -4,11 +4,13 @@
         <div class="image-box">
             <img class="thumbnail-img" :src="blog.imageUrl" alt="" style="width: 100%; height: 100%">
         </div>
-        <div class="title-box">
-            <p class="title-p">{{blog.title}}</p>
-        </div>
-        <div class="preview-box line-clamp">
-            <p class="preview-p">{{blog.previewText}}</p>
+        <div class="title-container">
+            <div class="title-box">
+                <p class="title-p">{{blog.title}}</p>
+            </div>
+            <div class="preview-box line-clamp">
+                <p class="preview-p">{{blog.previewText}}</p>
+            </div>
         </div>
         <div class="under-box">
             <div class="author-box">
