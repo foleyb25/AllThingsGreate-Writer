@@ -1,5 +1,4 @@
-
-<script src="https://cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/4.4.5.1/full-all/ckeditor.js"></script>
 
 <div class="container-fluid pt-5 pb-5">
     <form action="/blog" method="post" enctype="multipart/form-data">
@@ -29,7 +28,10 @@
 </div>
 
 <script>
-    CKEDITOR.replace( 'bodyText' );
+    // CKEDITOR.plugins.addExternal('youtube', '../../../CKPlugins/youtube', 'plugin.js')
+    CKEDITOR.replace( 'bodyText', {
+        // extraPlugins: 'youtube',
+    } );
     CKEDITOR.instances.bodyText.setData('<p>Enter your blog here...</p>', function() {
         this.checkDirty();
     })
