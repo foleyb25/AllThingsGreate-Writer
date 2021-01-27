@@ -8,7 +8,7 @@
         <input type="textarea" name="titleText" class="form-control" required>
     </div>
     <div class="form-group">
-        <label for="preview">Preview Text</label>
+        <label for="preview">Preview Text (over 350 characters)</label>
         <textarea name="previewText" minlength="350" rows="4" cols="100" class="form-control"></textarea>
     </div>
     <div class="form-group">
@@ -20,9 +20,10 @@
         <input name="categoryText" type="text" class="form-control">
     </div>
     <div>
-        <img class="center-cropped" src="/images/startup.png">
+        <label for="selectImage">Select an image thumbnail (required)</label>
+        <img id="selectedImage" class="center-cropped" src="/images/startup.png">
         <br>
-        <input name="imageFile" type="file" required>
+        <input name="imageFile" type="file" onchange="handleFileChange(event)"required>
     </div>
     <br><br>
     <button
@@ -31,6 +32,16 @@
     </button>
     </form>
 </div>
+
+<script>
+    function handleFileChange(event) {
+        const file = event.target.files[0];
+
+        const imageSrc = window.URL.createObjectURL(file)
+
+        document.getElementById("selectedImage").src = imageSrc
+    }
+</script>
 
 <script>
     CKEDITOR.replace( 'bodyText', {
@@ -44,8 +55,8 @@
     .center-cropped {
             object-position: center; /* Center the image within the element */
             object-fit: cover;
-            width: 64px;
-            height: 64px;
+            width: 150px;
+            height: 150px;
             border: solid 1px rgb(94, 94, 94);
         }
 </style>

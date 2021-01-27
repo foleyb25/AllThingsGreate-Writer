@@ -2,7 +2,7 @@
 <div class="container">
     <div class="article-box">
         <div class="image-box">
-            <img :src="blog.imageUrl" alt="" style="width: 100%; height: 100%">
+            <img class="thumbnail-img" :src="blog.imageUrl" alt="" style="width: 100%; height: 100%">
         </div>
         <div class="title-box">
             <p class="title-p">{{blog.title}}</p>
@@ -12,23 +12,25 @@
         </div>
         <div class="under-box">
             <div class="author-box">
-                    <p v-if='blog.writer.nickName == ""'class="author-p">{{blog.writer.fullName}}</p>
-                    <p v-if='blog.writer.nickName != ""'class="author-p">{{blog.writer.nickName}}</p>
+                    <p v-if='blog.writer.nickName == ""'class="author-p" style="padding-top: 4px;">{{blog.writer.fullName}}</p>
+                    <p v-if='blog.writer.nickName != ""'class="author-p" style="padding-top: 4px;">{{blog.writer.nickName}}</p>
                
             </div>
             <div class="rating-box">
-                <p class="rating-p">Rat:</p>
+                <img class="star-img" src="/images/stars.png" alt="">
             </div>
-            <div class="category-box">
-                <p class="category-p">Cat: {{blog.category}} </p>
+            <div class="category-box" style="text-align: center;">
+                <p class="category-p" style="margin-top: auto; margin-bottom: auto; padding-top: 4px;">#{{blog.category}}</p>
             </div>
-            <div class="timestamp-box">
+            <div class="timestamp-box" style="text-align: center;">
                 <!-- Can use .toLocaleTimeString -->
-                <p class="p-timestamp">{{new Date(blog.createdAt).toLocaleDateString()}}</p>
+                <p class="p-timestamp" style="padding-top: 4px;">{{new Date(blog.createdAt).toLocaleDateString()}}</p>
             </div>
         </div> 
     </div>
 </div>
 
-  
+  <style>
+
+  </style>
     
