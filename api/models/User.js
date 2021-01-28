@@ -14,7 +14,7 @@ module.exports = {
       profileImageUrl: this.profileImageUrl,
       following: this.following,
       followers: this.followers,
-      posts: this.posts,
+      ratedBlogs: this.ratedBlogs
     }
   },
 
@@ -34,6 +34,10 @@ module.exports = {
 
     followers: {
       collection: 'user'
+    },
+
+    ratedBlogs: {
+      collection: 'blog'
     },
 
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
