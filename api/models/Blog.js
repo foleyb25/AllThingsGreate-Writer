@@ -28,6 +28,10 @@ module.exports = {
             type: 'boolean', defaultsTo: false
         },
 
+        numberOfRatings: {
+            type: 'number', defaultsTo:0
+        },
+
         title: {
             type: 'string', required: true
         },
