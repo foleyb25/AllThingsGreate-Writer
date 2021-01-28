@@ -11,6 +11,7 @@ module.exports = {
             createdAt: this.createdAt,
             updatedAt: this.updatedAt,
             previewText: this.previewText,
+            numComments: this.numComments
           }
     },
 

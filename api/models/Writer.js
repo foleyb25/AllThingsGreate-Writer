@@ -13,8 +13,6 @@ module.exports = {
         nickName: this.nickName,
         bio: this.bio,
         profileImageUrl: this.profileImageUrl,
-        following: this.following,
-        followers: this.followers,
         posts: this.posts,
       }
     },
