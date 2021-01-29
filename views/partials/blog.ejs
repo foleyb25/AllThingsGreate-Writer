@@ -18,7 +18,7 @@
                     <p v-if='blog.writer.nickName != ""'class="author-p" style="padding-top: 4px;">{{blog.writer.nickName}}</p>
                
             </div>
-            <div class="rating-box" v-bind:style="{background: createBackgroundGradient}">
+            <div class="rating-box" v-bind:style="{background: createBackgroundGradient(blog)}">
                 <img class="star-img" src="/images/stars.png" alt="">
             </div>
             <div class="category-box" style="text-align: center;">

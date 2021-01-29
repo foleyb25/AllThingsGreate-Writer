@@ -45,7 +45,7 @@
     </div>
 </div>
 
-<%- exposeLocalsToBrowser({keys: ['blogs', 'pct']}) %>
+<%- exposeLocalsToBrowser({keys: ['blogs']}) %>
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
@@ -68,27 +68,6 @@ console.log(window.SAILS_LOCALS.pct)
             shouldShowBlogForm: false,
         },
         methods: {
-            createBlog: async function() {
-                // Before sending our POST request, we create FormData with postBody 
-                // and imagefile for the server to consume
-                const formData = new FormData()
-                formData.append("blogBody", this.blogBodyText)
-                formData.append('imagefile', this.selectedFile)
-                this.isCreatingBlog = true
-                try {
-                    await axios.post('/blog', formData)
-                    location.reload()
-                } catch (err) {
-                    this.isCreatingBlog = false
-                    console.error(err.toString())
-                }
-            },
-            // when file selection happens, keep track of selectedFile
-            handleFileChange: function(event) {
-                this.selectedFile = event.target.files[0]
-                this.blogFileImageSource = window.URL.createObjectURL(this.selectedFile)
-            },
-
             confirmDelete: async function() {
                 const blogId = this.selectedBlogToDelete.id
 
@@ -108,9 +87,15 @@ console.log(window.SAILS_LOCALS.pct)
             deleteBlog: async function(blog) {
                 this.selectedBlogToDelete = blog
                 this.shouldShowDeleteConfirmation = true
-
                 return 
             },
+            createBackgroundGradient(blog) {
+                const rating = blog.rating
+                const numberOfRatings = blog.numberOfRatings * 5
+                const colorpct = (rating / numberOfRatings) * 100
+                const styleString = `linear-gradient(to right, yellow ${colorpct}%, white ${colorpct}%)`;
+                return styleString
+            }
         },
         computed: {
             createBackgroundGradient() {
