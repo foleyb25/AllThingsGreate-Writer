@@ -1,4 +1,4 @@
-<script src="https://cdn.ckeditor.com/4.4.5.1/full-all/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/4.7.3/full-all/ckeditor.js"></script>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 
 <div class="container-fluid pt-5 pb-5">
@@ -52,8 +52,9 @@
 </script>
 
 <script>
-    CKEDITOR.replace( 'bodyText', {
-    } );
+    CKEDITOR.replace( 'bodyText' , {
+        allowedContent: true,
+    });
     CKEDITOR.instances.bodyText.setData('<p>Enter your blog here...</p>', function() {
         this.checkDirty();
     })
