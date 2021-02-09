@@ -1,7 +1,7 @@
 module.exports = {
 
     customToJSON: function() {
-        const fromNow = sails.moment(this.createdAt).fromNow()
+        const fromNow = sails.moment(this.updatedAt).fromNow()
         return {id: this.id, rating: this.rating,
             isReviewed: this.isReviewed,
             title: this.title,
