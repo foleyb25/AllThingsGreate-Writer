@@ -14,7 +14,8 @@ module.exports = {
       profileImageUrl: this.profileImageUrl,
       following: this.following,
       followers: this.followers,
-      ratedBlogs: this.ratedBlogs
+      ratedBlogs: this.ratedBlogs,
+      username: this.username,
     }
   },
 
@@ -88,12 +89,12 @@ email status until they click the link in the confirmation email.`
       example: 'Mary Sue van der McHenst'
     },
 
-    nickName: {
+    username: {
       type: 'string',
       required: false,
-      description: 'Users Nickname.',
+      description: 'Users username.',
       maxLength: 120,
-      example: 'B Fo'
+      example: 'BFo123'
     },
 
     isSuperAdmin: {
