@@ -8,17 +8,7 @@
  * For more information on configuration, check out:
  * https://sailsjs.com/config/http
  */
-module.exports.http = {
-
-  requireHttps: function(req, res, next) {
-    if (!req.secure) {
-      return res.redirect('https://' + req.get('host') + req.url);
-    }
-  
-    return next();
-  },
-
-  
+module.exports.http = {  
 
 
   /****************************************************************************
@@ -39,17 +29,28 @@ module.exports.http = {
     *                                                                          *
     ***************************************************************************/
 
-  //  order: [
-  //     'cookieParser',
-  //     'session',
-  //     'bodyParser',
-  //     'compress',
-  //     'poweredBy',
-  //     'router',
-  //     'www',
-  //     'favicon',
-  //     'requireHttps'
-  //   ],
+   order: [
+      'cookieParser',
+      'session',
+      'bodyParser',
+      'compress',
+      'poweredBy',
+      'router',
+      'www',
+      'favicon',
+      'forceSSL'
+    ],
+
+    forceSSL: function (req, res, next) {
+
+      if (req.isSocket) {
+          return res.redirect('wss://' + req.headers.host + req.url);
+      } else if (req.headers["x-forwarded-proto"] == "http") {
+          return res.redirect('https://' + req.headers.host + req.url);
+      } else {
+          next(); //it's already secure
+      }
+}
 
 
     /***************************************************************************
