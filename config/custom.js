@@ -44,29 +44,28 @@ module.exports.custom = {
   *                                                                         *
   * Automated email configuration                                           *
   *                                                                         *
-  * Sandbox Mailgun credentials for use during development, as well as any  *
+  * Sandbox Sendgrid credentials for use during development, as well as any  *
   * other default settings related to "how" and "where" automated emails    *
   * are sent.                                                               *
   *                                                                         *
-  * (https://app.mailgun.com/app/domains)                                   *
+  *                                   *
   *                                                                         *
   **************************************************************************/
-  // mailgunDomain: 'sandboxaa1234fake678.mailgun.org',
-  // mailgunSecret: 'key-fakeb183848139913858e8abd9a3',
+ sendgridSecret: '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',
   //--------------------------------------------------------------------------
-  // /\  Configure these to enable support for automated emails.
+  // /\  Configure this to enable support for automated emails.
   // ||  (Important for password recovery, verification, contact form, etc.)
   //--------------------------------------------------------------------------
 
   // The sender that all outgoing emails will appear to come from.
-  fromEmailAddress: 'noreply@example.com',
-  fromName: 'The NEW_APP_NAME Team',
+  fromEmailAddress: 'customer.service@atgr8.com',
+  fromName: 'The All Things Great Team',
 
   // Email address for receiving support messages & other correspondences.
   // > If you're using the default privacy policy, this will be referenced
   // > as the contact email of your "data protection officer" for the purpose
   // > of compliance with regulations such as GDPR.
-  internalEmailAddress: 'support+development@example.com',
+  internalEmailAddress: 'customer.service@atgr8.com',
 
   // Whether to require proof of email address ownership any time a new user
   // signs up, or when an existing user attempts to change their email address.
