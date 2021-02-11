@@ -8,10 +8,17 @@
  * For more information on configuration, check out:
  * https://sailsjs.com/config/http
  */
-
 module.exports.http = {
 
-  trustProxy: true,
+  requireHttps: function(req, res, next) {
+    if (!req.secure) {
+      return res.redirect('https://' + req.get('host') + req.url);
+    }
+  
+    return next();
+  },
+
+
   /****************************************************************************
   *                                                                           *
   * Sails/Express middleware to run for every HTTP request.                   *
