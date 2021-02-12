@@ -4,6 +4,11 @@ module.exports = async function(req,res) {
   try {
     const blog = await Blog.findOne({id: blogId}).populate("writer")
     const sanitizedBlog = JSON.parse(JSON.stringify(blog))
+    const comments = await Comment.find({
+      blog: blogId
+    }).sort('updatedAt DESC').populate('user')
+    const sanitizedComments = JSON.parse(JSON.stringify(comments))
+    sanitizedBlog.comments = sanitizedComments
     return res.view("pages/blog/review-single", {
         blog: sanitizedBlog,
     });

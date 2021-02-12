@@ -64,7 +64,7 @@ module.exports.routes = {
   //CRUD
   'POST /blog':                 'blog/create',      
   'DELETE /blog/:blogId':       'blog/delete',
-  'POST /blog/approve/:blogId': 'blog/approve',
+  'POST /blog/approve': 'blog/approve',
   'POST /blog/update/:blogId':  'blog/update',
 
   //VIEWS
@@ -82,14 +82,8 @@ module.exports.routes = {
   'GET /profile':               'writer/view-profile',
   'GET /user/:id':              'writer/publicprofile',
   
-
+ //           DELETE
+ //CRUD
+  'DELETE /comment/delete/:commentid': {action:'comment/delete', csrf:false}
   
-
-  // 'GET /customauth/login': {
-  //   view: 'pages/customauth/custom-login',
-  //   locals: {
-  //     layout: 'layouts/auth-layout'
-  //   }
-  // }
-
 };
