@@ -64,7 +64,7 @@ module.exports.routes = {
   //CRUD
   'POST /blog':                 'blog/create',      
   'DELETE /blog/:blogId':       'blog/delete',
-  'POST /blog/approve': 'blog/approve',
+  'PUT /blog/approve': 'blog/approve',
   'POST /blog/update/:blogId':  'blog/update',
 
   //VIEWS

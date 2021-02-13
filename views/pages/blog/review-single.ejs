@@ -55,6 +55,7 @@
                 formData.append('blogId', this.blog.id)
                 try {
                     await axios.put('/blog/approve', formData)
+                    location.reload()
                 } catch (err) {
                     console.error(err.toString())
                 }
