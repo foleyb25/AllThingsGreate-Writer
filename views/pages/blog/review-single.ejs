@@ -6,9 +6,11 @@
         <div id="preview">
             <%- blog.bodyHTML %>
         </div>
-
-        <div v-if="!blog.isReviewed">
+        <div v-if="!blog.isReviewed && blog.writer.id != me.id">
             <button style="background-color: teal;" v-on:click="approve">Approve</button>
+        </div>
+        <div v-if="blog.writer.id = me.id">
+            <h3>Request another blog reviewer to approve your blog</h3>
         </div>
     </div>
     <!-- COMMENTS -->
@@ -38,13 +40,14 @@
     </div>
 </div>
 
-<%- exposeLocalsToBrowser({keys: ['blog']}) %>
+<%- exposeLocalsToBrowser({keys: ['blog', 'me']}) %>
 
 <script>
     const App = new Vue({
         el: '#app',
         data: {
             blog: window.SAILS_LOCALS.blog,
+            me: window.SAILS_LOCALS.me,
             shouldShowDeleteConfirmation: false,
             selectedBlotToDelete: null,
             isDeletingBlog: false,
@@ -56,6 +59,7 @@
                 try {
                     await axios.put('/blog/approve', formData)
                     location.reload()
+                    return false
                 } catch (err) {
                     console.error(err.toString())
                 }

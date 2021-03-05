@@ -1,10 +1,10 @@
 module.exports = async function (req, res) {
     const blogId = req.param("blogId")
     try {
-        const blogRecord = await Blog.update({id: blogId}).set({isReviewed: true
+        const blog = await Blog.findOne({id: blogId})
+        const blogRecord = await Blog.update({id: blogId}).set({isReviewed: true, updatedAt: blog.updatedAt
     })
-        // return res.redirect(`/blog/review/${blogId}`)
-        res.end()
+    res.end()
     } catch(err) {
         res.serverError(err.toString())
     }
