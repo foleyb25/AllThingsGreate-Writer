@@ -32,10 +32,15 @@
         <img id="selectedImage" class="center-cropped" src="/images/startup.png">
         <br>
         <input name="imageFile" type="file" onchange="handleFileChange(event)"required>
+        <div id="notify-box">
+
+        </div>
     </div>
     <br><br>
     <button
-        style="color: rgb(0, 0, 0); border-radius: 5px; border: solid 1px; margin-left: 12px">
+        id="create-btn"
+        class="btn btn-default;"
+        disabled>
         Create
     </button>
     </form>
@@ -44,10 +49,21 @@
 <script>
     function handleFileChange(event) {
         const file = event.target.files[0];
+        const filename = file.name;
+        
+        const extension = filename.split('.').pop()
+        if (extension == 'jpg' || extension == 'png' || extension == 'gif' || extension == 'jpeg') {
+            document.getElementById('create-btn').disabled = false
+            document.getElementById('notify-box').innerHTML = ''
+            const imageSrc = window.URL.createObjectURL(file)
+            document.getElementById("selectedImage").src = imageSrc
+            return true
+        } else {
+            document.getElementById('create-btn').disabled = true
+            document.getElementById('notify-box').innerHTML = "<p style='color:red;'>Please select .jpeg, .jpg, .gif, .png extension</p>"
+            return false
+        }  
 
-        const imageSrc = window.URL.createObjectURL(file)
-
-        document.getElementById("selectedImage").src = imageSrc
     }
 </script>
 
