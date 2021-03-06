@@ -6,10 +6,18 @@
         <div id="preview">
             <%- blog.bodyHTML %>
         </div>
-        <div v-if="!blog.isReviewed && blog.writer.id != me.id">
-            <button style="background-color: teal;" v-on:click="approve">Approve</button>
-        </div>
-        <div v-if="blog.writer.id = me.id">
+        <span>
+            <div v-if="!blog.isReviewed && blog.writer.id != me.id" style="float: left;">
+                <button style="background-color: teal;" v-on:click="approve">Approve</button>
+            </div>
+            <div v-if="!blog.isArchived">
+                <button style="background-color: rgb(66, 0, 128); color:white; margin-left: 12px;" v-on:click="archive">Archive Blog</button>
+            </div>
+            <div v-if="blog.isArchived">
+                <button style="background-color: rgb(66, 0, 128); color:white; margin-left: 12px;" v-on:click="unarchive">Un-Archive Blog</button>
+            </div>
+        </span>
+        <div v-if="blog.writer.id = me.id && !blog.isReviewed">
             <h3>Request another blog reviewer to approve your blog</h3>
         </div>
     </div>
@@ -59,7 +67,28 @@
                 try {
                     await axios.put('/blog/approve', formData)
                     location.reload()
-                    return false
+                } catch (err) {
+                    console.error(err.toString())
+                }
+            },
+
+            archive: async function() {
+                const formData = new FormData()
+                formData.append('blogId', this.blog.id)
+                try {
+                    await axios.put('/blog/archive', formData)
+                    location.reload()
+                } catch (err) {
+                    console.error(err.toString())
+                }
+            },
+
+            unarchive: async function() {
+                const formData = new FormData()
+                formData.append('blogId', this.blog.id)
+                try {
+                    await axios.put('/blog/unarchive', formData)
+                    location.reload()
                 } catch (err) {
                     console.error(err.toString())
                 }

@@ -14,6 +14,7 @@ module.exports = {
             previewText: this.previewText,
             numComments: this.numComments,
             numberOfRatings: this.numberOfRatings,
+            isArchived: this.isArchived,
             fromNow: fromNow,
           }
     },
@@ -33,6 +34,10 @@ module.exports = {
 
         numberOfRatings: {
             type: 'number', defaultsTo:0
+        },
+
+        isArchived: {
+            type: 'boolean', defaultsTo:false
         },
 
         title: {
