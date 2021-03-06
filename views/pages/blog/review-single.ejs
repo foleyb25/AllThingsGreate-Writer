@@ -6,18 +6,17 @@
         <div id="preview">
             <%- blog.bodyHTML %>
         </div>
-        <span>
-            <div v-if="!blog.isReviewed && blog.writer.id != me.id" style="float: left;">
-                <button style="background-color: teal;" v-on:click="approve">Approve</button>
-            </div>
-            <div v-if="!blog.isArchived">
-                <button style="background-color: rgb(66, 0, 128); color:white; margin-left: 12px;" v-on:click="archive">Archive Blog</button>
-            </div>
-            <div v-if="blog.isArchived">
-                <button style="background-color: rgb(66, 0, 128); color:white; margin-left: 12px;" v-on:click="unarchive">Un-Archive Blog</button>
-            </div>
-        </span>
-        <div v-if="blog.writer.id = me.id && !blog.isReviewed">
+        
+        <div v-if="blog.writer.id != me.id && !blog.isReviewed" style="float: left;">
+            <button style="background-color: teal;" v-on:click="approve">Approve</button>
+        </div>
+        <div v-if="!blog.isArchived">
+            <button style="background-color: rgb(66, 0, 128); color:white; margin-left: 12px;" v-on:click="archive">Archive Blog</button>
+        </div>
+        <div v-if="blog.isArchived">
+            <button style="background-color: rgb(66, 0, 128); color:white; margin-left: 12px;" v-on:click="unarchive">Un-Archive Blog</button>
+        </div>
+        <div v-if="blog.writer.id == me.id && !blog.isReviewed">
             <h3>Request another blog reviewer to approve your blog</h3>
         </div>
     </div>
