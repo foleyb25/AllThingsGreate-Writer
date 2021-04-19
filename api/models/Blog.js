@@ -16,11 +16,16 @@ module.exports = {
             numberOfRatings: this.numberOfRatings,
             isArchived: this.isArchived,
             fromNow: fromNow,
+            views: this.views,
           }
     },
 
     attributes: {
         numComments: {
+            type: 'number', defaultsTo: 0
+        },
+
+        views: {
             type: 'number', defaultsTo: 0
         },
 
