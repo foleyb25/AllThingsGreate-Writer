@@ -1,5 +1,5 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-
+<div id="blog-list">
 <div class="container-fluid pt-5 pb-5">
   <h1 class="text-center">Welcome <%= me.fullName %></h1>
     <p class="text-center">Here is a list of your blogs</p>
@@ -28,11 +28,13 @@
         </div>
 
         <!-- Blog posts -->
-        <div>
+        
             <div v-for="blog in blogs">
+                <div class="article-box">
                 <a :href="'/blog/edit/' +blog.id">
                     <%- partial('../partials/blog') %>
                 </a>
+                </div>
                 <div style="text-align: center; align-content: center;">
                     <button class="btn btn-danger"v-on:click="deleteBlog(blog)">Delete Blog</button>
                     <div v-if="!blog.isReviewed" style="background-color: rgb(216, 212, 4); width: 30%; margin: auto; margin-top: 8px;
@@ -45,10 +47,9 @@
                     </div>
                 </div>
             </div>
-        </div>
     </div>
 </div>
-
+</div>
 <%- exposeLocalsToBrowser({keys: ['blogs']}) %>
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -109,246 +110,5 @@ console.log(window.SAILS_LOCALS.pct)
     })
 </script>
 
-<style>
-    [v-cloak] { display:none; }
-
-.article-box {
-    margin: 10px auto;
-    width: 472pt;
-    height: 118pt;
-    transition: transform .2s;
-    border-style: solid;
-    border-width: 1px;
-}
-
-.article-box:hover {
-    transform: scale(1.02);
-}
-
-a {
-    color: black;
-    text-decoration: none
-}
-
-.title-p {
-    padding-top: 8px;
-    padding-left: 8px;
-    padding-right: 8px;
-}
-
-.article-box > div {
-    vertical-align: top;
-    display: inline-block;
-}
-
-.under-box {
-    float: left;
-    height: 26pt;
-    width: 100%;
-    overflow: hidden;
-    border-top: solid;
-    border-width: 1px;
-}
-
-.author-box {
-    float: left;
-    background-color: #FFFFFF;
-    height: 100%;
-    width: 25%;
-    font-weight: 750;
-    display: table;
-}
-
-.author-p {
-    text-align:center; 
-    vertical-align: middle;
-    display: table-cell; 
-}
-
-.category-box {
-    float: left;
-    background-color:#FFFFFF;
-    height: 100%;
-    width: 25%;
-    display: table;
-}
-
-.rating-box {
-    float: left;
-    height: 100%;
-    width: 25%;
-}
-
-.star-img {
-    width: 100%;
-    height: 100%;
-}
-
-.timestamp-box {
-    background-color: #FFFFFF;
-    color: #818181;
-    height: 100%;
-    width: 25%;
-    overflow: hidden;
-    font-weight: 150;
-    font-style: italic;
-    display: table;
-}
-
-.thumbnail-img {
-    object-position: center; /* Center the image within the element */
-    object-fit: cover;
-}
-
-.image-box {
-    float: left;
-    width: 100pt;
-    height: 90pt; 
-    background-color: rgb(167, 168, 166);
-    border-right: solid;
-    border-width: 1px;
-}
-
-.title-container {
-    float: left;
-    text-overflow: ellipsis;
-    word-wrap: break-word;
-    overflow: hidden;
-    width: 78%;
-    height: 90pt;
-    background-color: #FFFFFF;
-    font-weight: 750;
-}
-
-.title-box {
-    float: left;
-    width: 85%;
-    height: 45%;
-    background-color: #FFFFFF;
-    font-weight: 750;
-}
-
-.comment-indicator {
-    height: 25pt;
-    width: 15%;
-    float: left;
-}
-
-
-.preview-box {
-    float: left;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    word-wrap: break-word;
-    width: 100%;
-    height: 55%;
-    background-color: #ffffff;
-    font-weight: 750;
-}
-
-.preview-p {
-    font-size: 13px;
-    padding-top: 8px;
-    padding-left: 8px;
-    padding-right: 8px;
-    font-weight: 150;
-    height: 100%;
-    width: 100%;
-}
-
-.timestamp-p {
-    text-align:center; 
-    vertical-align: middle;
-    display: table-cell; 
-}
-
-.line-clamp p{
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical; 
-  overflow: hidden; 
-}
-
-.center-cropped {
-        object-position: center; /* Center the image within the element */
-        object-fit: cover;
-        width: 50px;
-        height: 50px;
-        border-radius: 100px;
-        border: solid 1px rgb(94, 94, 94);
-}
-
-.category-p {
-    text-align:center; 
-  vertical-align: middle;
-  display: table-cell; 
-}
-
-@media (max-width: 475px) {
-    .article-box {
-        width: 100%;
-    }
-
-    .image-box {
-        width: 25%;
-    }
-    
-    .title-box {
-        width: 85%;
-    }
-
-    .comment-indicator {
-        width: 15%;
-    }
-
-    .title-container {
-        width: 75%;
-    }
-
-    .preview-box {
-        width: 100%;
-    }
-
-    #app {
-        padding: 0px !important;
-    }
-
-    .container-fluid {
-        padding: 0px;
-    }
-
-    .container {
-        padding: 1px;
-    }
-
-    .under-box {
-        height: 20pt;
-    }
-
-    .timestamp-box {
-        font-size: 12px;
-    }
-
-    .author-box {
-        font-size: 12px;
-    }
-
-    .author-p {
-        padding-top: 8px;  
-    }
-    
-    .timestamp-p {
-        padding-top: 8px;
-    }
-
-    .category-box {
-        font-size: 12px;
-    }
-
-    .category-p {
-        padding-top: 8px;
-    }
-}
-</style>
 
     
