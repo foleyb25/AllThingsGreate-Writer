@@ -24,19 +24,23 @@ module.exports = {
       },
 
       instagramLink: {
-        type: 'string'
+        type: 'string',
+        defaultsTo: 'undefined',
       },
 
       twitterLink: {
-        type: 'string'
+        type: 'string',
+        defaultsTo: 'undefined',
       },
 
       snapchatLink: {
-        type: 'string'
+        type: 'string',
+        defaultsTo: 'undefined',
       },
 
       tiktokLink: {
-        type: 'string'
+        type: 'string',
+        defaultsTo: 'undefined',
       },
   
       profileImageUrl: {
