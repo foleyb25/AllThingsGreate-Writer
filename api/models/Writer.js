@@ -22,6 +22,22 @@ module.exports = {
       bio: {
         type: 'string'
       },
+
+      instagramLink: {
+        type: 'string'
+      },
+
+      twitterLink: {
+        type: 'string'
+      },
+
+      snapchatLink: {
+        type: 'string'
+      },
+
+      tiktokLink: {
+        type: 'string'
+      },
   
       profileImageUrl: {
         type: 'string'
