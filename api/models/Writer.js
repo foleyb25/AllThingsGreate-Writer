@@ -14,6 +14,10 @@ module.exports = {
         bio: this.bio,
         profileImageUrl: this.profileImageUrl,
         posts: this.posts,
+        instagramLink: this.instagramLink,
+        snapchatLink: this.snapchatLink,
+        tiktokLink: this.tiktokLink,
+        twitterLink: this.twitterLink
       }
     },
   
