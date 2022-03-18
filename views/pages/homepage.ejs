@@ -9,24 +9,6 @@
 
     <div id="app" v-cloak style="padding: 24px">
 
-        <!-- modal container -->
-        <div v-if="shouldShowDeleteConfirmation" class="modal-container">
-            <div class="modal-form">
-                <div>
-                    Are you sure you want to delete {{selectedBlogToDelete.title}}?
-                </div>
-
-                <div style="margin-top: 16px; display: flex">
-                    <div style="flex: 1"></div>
-                    <button v-on:click="shouldShowDeleteConfirmation = false">Cancel</button>
-                    <button v-on:click="confirmDelete()" 
-                        v-bind:class="[isDeletingBlog ? 'gray' : 'red']"
-                        style="color: white; 
-                        margin-left: 16px;">Delete</button>
-                </div>
-            </div>            
-        </div>
-
         <!-- Blog posts -->
         
             <div v-for="blog in blogs">
@@ -36,7 +18,12 @@
                 </a>
                 </div>
                 <div style="text-align: center; align-content: center;">
-                    <button class="btn btn-danger"v-on:click="deleteBlog(blog)">Delete Blog</button>
+                    <div v-if="!blog.isArchived">
+                        <button style="background-color: rgb(130, 107, 151); color:white; margin: auto; margin-top: 8px; border-radius: 8px;" v-on:click="archive(blog)">Archive Blog</button>
+                    </div>
+                    <div v-if="blog.isArchived">
+                        <button style="background-color: rgb(77, 14, 133); color:white; margin: auto; margin-top: 8px; border-radius: 8px;" v-on:click="unarchive(blog)">Un-Archive Blog</button>
+                    </div>
                     <div v-if="!blog.isReviewed" style="background-color: rgb(216, 212, 4); width: 30%; margin: auto; margin-top: 8px;
                     border-radius: 8px;">
                         Needs Reviewed
@@ -73,26 +60,29 @@ console.log(window.SAILS_LOCALS.pct)
             shouldShowBlogForm: false,
         },
         methods: {
-            confirmDelete: async function() {
-                const blogId = this.selectedBlogToDelete.id
-
+            archive: async function(blog) {
+                var bloginThis = blog
+                var blogTitle = blog.title
+                const formData = new FormData()
+                var thisBlogId = blog.id
+                formData.append('blogId', blog.id)
                 try {
-                    this.isDeletingBlog = true
-                    await axios.delete(`/blog/${blogId}`)
-                    this.shouldShowDeleteConfirmation = false
-                    this.blogs = this.blogs.filter(p => {
-                        return p.id != this.selectedBlogToDelete.id
-                    })
-                    this.isDeletingBlog = false
+                    await axios.put('/blog/archive', formData)
+                    location.reload()
                 } catch (err) {
-                    this.isDeletingBlog = false
                     console.error(err.toString())
                 }
             },
-            deleteBlog: async function(blog) {
-                this.selectedBlogToDelete = blog
-                this.shouldShowDeleteConfirmation = true
-                return 
+
+            unarchive: async function(blog) {
+                const formData = new FormData()
+                formData.append('blogId', blog.id)
+                try {
+                    await axios.put('/blog/unarchive', formData)
+                    location.reload()
+                } catch (err) {
+                    console.error(err.toString())
+                }
             },
             createBackgroundGradient(blog) {
                 const rating = blog.rating

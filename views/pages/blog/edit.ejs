@@ -1,53 +1,97 @@
-<script src="https://cdn.ckeditor.com/4.7.3/full-all/ckeditor.js"></script>
 
-<div class="container-fluid pt-5 pb-5">
-    <form action="/blog/update/<%- blog.id %>"method="POST" enctype="multipart/form-data">
-    <div class="form-group">
-        <label for="title">Title</label>
-        <input type="text" name="titleText" class="form-control" value="<%- blog.title %>">
-    </div>
-    <div class="form-group">
-        <label for="preview">Preview Text</label>
-        <textarea name="previewText" minlength="276" rows="4" cols="100" class="form-control"><%- blog.previewText %></textarea>
-    </div>
-    <div class="form-group">
-        <label for="body">Body</label>
-        <textarea name="bodyText" cols="30" rows="10" class="form-control"></textarea>
-    </div>
-    <div class="form-group">
-        <label for="category">Select a Category</label>
-        <select name="categoryText">
-            <option value="AllThingsGreat">AllThingsGreat</option>
-            <option value="Sports">Sports</option>
-            <option value="Entertainment">Entertainment</option>
-            <option value="Outdoors">Outdoors</option>
-            <option value="Gaming">Gaming</option>
-            <option value="Investments">Investments</option>
-            <option value="History">History</option>
-          </select>
-    </div>
-    <div>
-        <label for="selectImage">Thumbnail</label>
-        <img class="center-cropped" src="<%- blog.imageUrl ? blog.imageUrl : '/images/startup.png' %>">
+<script src="https://cdn.ckeditor.com/4.7.3/full-all/ckeditor.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+
+    <div class="container-fluid pt-5 pb-5">
+        <form action="/blog/update/<%- blog.id %>"method="POST" enctype="multipart/form-data"> -->
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" name="titleText" class="form-control" value="<%- blog.title %>">
+            </div>
+            <div class="form-group">
+                <label for="preview">Preview Text</label>
+                <textarea name="previewText" minlength="276" rows="4" cols="100" class="form-control"><%- blog.previewText %></textarea>
+            </div>
+            <div class="form-group">
+                <label for="body">Body</label>
+                <textarea name="bodyText" cols="30" rows="10" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="category">Select a Category</label>
+                <select name="categoryText">
+                    <option value="AllThingsGreat">AllThingsGreat</option>
+                    <option value="Sports">Sports</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Outdoors">Outdoors</option>
+                    <option value="Gaming">Gaming</option>
+                    <option value="Investments">Investments</option>
+                    <option value="History">History</option>
+                </select>
+            </div>
+            <div>
+                <label for="selectImage">Thumbnail</label>
+                <img class="center-cropped" src="<%- blog.imageUrl ? blog.imageUrl : '/images/startup.png' %>">
+                <br>
+                <input name="imageFile" type="file" disabled>
+            </div>
+            <br><br>
+            <button
+                style="color: rgb(0, 0, 0); border-radius: 5px; border: solid 1px; margin-left: 12px">
+                Update
+            </button>
+        </form>
         <br>
-        <input name="imageFile" type="file" disabled>
+        <br>
+        <br>
+        <H1>Here is a preview of your blog</H1>
+        <div id="preview">
+            <%- blog.bodyHTML %>
+        </div>
+
+<div id="app" v-cloak style="padding: 24px">
+    <div v-if="!blog.isArchived">
+        <button style="background-color: rgb(66, 0, 128); color:white; margin-left: 12px;" v-on:click="archive">Archive Blog</button>
     </div>
-    <br><br>
-    <button
-        style="color: rgb(0, 0, 0); border-radius: 5px; border: solid 1px; margin-left: 12px">
-        Update
-    </button>
-    </form>
-    <br>
-    <br>
-    <br>
-    <H1>Here is a preview of your blog</H1>
-    <div id="preview">
-        <%- blog.bodyHTML %>
+    <div v-if="blog.isArchived">
+        <button style="background-color: rgb(117, 98, 134); color:white; margin-left: 12px;" v-on:click="unarchive">Un-Archive Blog</button>
     </div>
 </div>
 
+<%- exposeLocalsToBrowser({keys: ['blog', 'me']}) %>
+
 <script>
+    const App = new Vue({
+        el: '#app',
+        data: {
+            blog: window.SAILS_LOCALS.blog,
+            me: window.SAILS_LOCALS.me,
+        },
+        methods: {
+            archive: async function() {
+                const formData = new FormData()
+                formData.append('blogId', this.blog.id)
+                try {
+                    await axios.put('/blog/archive', formData)
+                    location.reload()
+                } catch (err) {
+                    console.error(err.toString())
+                }
+            },
+
+            unarchive: async function() {
+                const formData = new FormData()
+                formData.append('blogId', this.blog.id)
+                try {
+                    await axios.put('/blog/unarchive', formData)
+                    location.reload()
+                } catch (err) {
+                    console.error(err.toString())
+                }
+            },
+        },
+    })
+
+
     const body = document.getElementById("preview").innerHTML
     CKEDITOR.replace( 'bodyText' , {
         allowedContent: true,
@@ -55,6 +99,9 @@
     CKEDITOR.instances.bodyText.setData(body, function() {
         this.checkDirty();
     })
+
+    
+
 </script>
 
 <style>
