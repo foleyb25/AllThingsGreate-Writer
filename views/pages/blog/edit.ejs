@@ -8,10 +8,10 @@
                 <label for="title">Title</label>
                 <input type="text" name="titleText" class="form-control" value="<%- blog.title %>">
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="preview">Preview Text</label>
                 <textarea name="previewText" minlength="276" rows="4" cols="100" class="form-control"><%- blog.previewText %></textarea>
-            </div>
+            </div> -->
             <div class="form-group">
                 <label for="body">Body</label>
                 <textarea name="bodyText" cols="30" rows="10" class="form-control"></textarea>
@@ -92,7 +92,7 @@
     })
 
 
-    const body = document.getElementById("preview").innerHTML
+    // const body = document.getElementById("preview").innerHTML
     CKEDITOR.replace( 'bodyText' , {
         allowedContent: true,
     });
