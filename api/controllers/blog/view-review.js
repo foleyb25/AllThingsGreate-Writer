@@ -1,16 +1,21 @@
 module.exports = async function(req,res) {
-  try {
-    const blogsToReview = await Blog.find({}).sort(
-      [ {isReviewed: 'ASC'}, {updatedAt: 'DESC'}]
-    ).populate("writer")
-    const sanitizedBlogs = JSON.parse(JSON.stringify(blogsToReview))
 
-    //compute pctg here
+  try {
+    //Find all the blogs as super admin
+    const blogs = await Blog.find({})
+    .sort('createdAt DESC')
+    .populate('writer')
+    .paginate(0, 25)
+    const sanitizedBlogs = JSON.parse(JSON.stringify(blogs))
+    const isMore = sanitizedBlogs.length == 25 ? true : false
 
     return res.view("pages/blog/review", {
       blogs: sanitizedBlogs,
-      pct: 50,
+      pageNum: 0,
+      isMore: isMore
     });
+
+    
   } catch(err) {
     res.serverError(err.toString())
   }

@@ -10,13 +10,11 @@
     <div id="app" v-cloak style="padding: 24px">
 
         <!-- Blog posts -->
-        
+        <div class="review-blogs">
             <div v-for="blog in blogs">
-                <div class="article-box">
                 <a :href="'/blog/edit/' +blog.id">
                     <%- partial('../partials/blog') %>
                 </a>
-                </div>
                 <div style="text-align: center; align-content: center;">
                     <div v-if="!blog.isArchived">
                         <button style="background-color: rgb(130, 107, 151); color:white; margin: auto; margin-top: 8px; border-radius: 8px;" v-on:click="archive(blog)">Archive Blog</button>
@@ -34,10 +32,14 @@
                     </div>
                 </div>
             </div>
+            <div v-if="isMore" style="margin: auto; text-align: center;">
+                <button class="btn btn-info" v-on:click="paginate()">Load More</button>
+            </div>
+        </div>
     </div>
 </div>
 </div>
-<%- exposeLocalsToBrowser({keys: ['blogs']}) %>
+<%- exposeLocalsToBrowser({keys: ['blogs', 'pageNum', 'isMore']}) %>
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
@@ -51,7 +53,8 @@ console.log(window.SAILS_LOCALS.pct)
             selectedBlotToDelete: null,
             isDeletingBlog: false,
             colorpct: window.SAILS_LOCALS.pct,
-
+            pageNum: window.SAILS_LOCALS.pageNum,
+            isMore: window.SAILS_LOCALS.isMore,
             // Blog creation State variables
             isCreatingBlog: false,
             blogBodyText: null,
@@ -84,18 +87,22 @@ console.log(window.SAILS_LOCALS.pct)
                     console.error(err.toString())
                 }
             },
-            createBackgroundGradient(blog) {
-                const rating = blog.rating
-                const numberOfRatings = blog.numberOfRatings * 5
-                const colorpct = (rating / numberOfRatings) * 100
-                const styleString = `linear-gradient(to right, yellow ${colorpct}%, white ${colorpct}%)`;
-                return styleString
+            paginate: async function()  {
+                console.log("Paginate")
+                const nextPage = this.pageNum + 1
+                const formData = new FormData()
+                formData.append('pageNum', nextPage)
+                try {
+                    const res = await axios.put('/paginate-home', formData)
+                    this.isMore = res.data.isMore
+                    this.blogs.push.apply(this.blogs, res.data.blogs)
+                    this.pageNum = nextPage
+                } catch (err) {
+                    console.error(err.toString())
+                }
             }
         },
         computed: {
-            createBackgroundGradient() {
-                return `linear-gradient(to right, yellow ${this.colorpct}%, white ${this.colorpct}%)`;
-            }
         }
     })
 </script>

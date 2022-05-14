@@ -1,10 +1,10 @@
-<div id="review">
+
     <div class="container-fluid pt-5 pb-5">
         <h1 class="text-center">Blogs Ready For Review</h1>
         <div id="app" v-cloak style="padding: 24px">
 
             <!-- Blog posts -->
-            <div>
+            <div id="review-blogs">
                 <div v-for="blog in blogs">
                     <a :href="'/blog/review/'+blog.id">
                     <%- partial('../../partials/blog') %>
@@ -21,11 +21,13 @@
                         </div>
                     </div>
                 </div>
+                <div v-if="isMore" style="margin: auto; text-align: center;">
+                    <button class="btn btn-info" v-on:click="paginate()">Load More</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<%- exposeLocalsToBrowser({keys: ['blogs']}) %>
+<%- exposeLocalsToBrowser({keys: ['blogs', 'pageNum', 'isMore']}) %>
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
@@ -37,13 +39,14 @@
             shouldShowDeleteConfirmation: false,
             selectedBlogToDelete: null,
             isDeletingBlog: false,
-
+            isMore: window.SAILS_LOCALS.isMore,
             // Blog creation State variables
             isCreatingBlog: false,
             blogBodyText: null,
             blogFileImageSource: null,
             selectedFile: null,
             shouldShowBlogForm: false,
+            pageNum: window.SAILS_LOCALS.pageNum,
         },
         methods: {
             createBackgroundGradient(blog) {
@@ -52,6 +55,20 @@
                 const colorpct = (rating / numberOfRatings) * 100
                 const styleString = `linear-gradient(to right, yellow ${colorpct}%, white ${colorpct}%)`;
                 return styleString
+            },
+            paginate: async function()  {
+                console.log("Paginate")
+                const nextPage = this.pageNum + 1
+                const formData = new FormData()
+                formData.append('pageNum', nextPage)
+                try {
+                    const res = await axios.put('/paginate-rev', formData)
+                    this.isMore = res.data.isMore
+                    this.blogs.push.apply(this.blogs, res.data.blogs)
+                    this.pageNum = nextPage
+                } catch (err) {
+                    console.error(err.toString())
+                }
             }
         },
     })

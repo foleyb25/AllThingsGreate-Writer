@@ -70,6 +70,8 @@ module.exports.routes = {
   'GET /blog/create':           'blog/view-create', 
   'GET /blog/edit/:blogId':     'blog/view-edit',
   'GET /blog/review':           'blog/view-review',
+  'PUT /paginate-home':         'paginate-homepage',
+  'PUT /paginate-rev':          'paginate-review',
   'GET /blog/review/:blogId':   'blog/view-review-single-blog',
   
 

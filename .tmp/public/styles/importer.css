@@ -638,10 +638,25 @@ body {
     padding-top: 8px;
   }
 }
-#review [v-cloak] {
+#review-blogs [v-cloak] {
   display: none;
 }
-#review .article-box {
+#review-blogs p {
+  font-family: 'Revans-medium';
+}
+#review-blogs .article-container {
+  margin: auto;
+  width: 472pt;
+}
+#review-blogs .filter-box {
+  width: 472pt;
+  height: 18pt;
+  border-width: 1px;
+  border-style: solid;
+  margin: auto;
+  background-color: red;
+}
+#review-blogs .article-box {
   margin: 10px auto;
   width: 472pt;
   height: 118pt;
@@ -649,23 +664,23 @@ body {
   border-style: solid;
   border-width: 1px;
 }
-#review .article-box:hover {
+#review-blogs .article-box:hover {
   transform: scale(1.02);
 }
-#review a {
+#review-blogs a {
   color: black;
   text-decoration: none;
 }
-#review .title-p {
+#review-blogs .title-p {
   padding-top: 8px;
   padding-left: 8px;
   padding-right: 8px;
 }
-#review .article-box > div {
+#review-blogs .article-box > div {
   vertical-align: top;
   display: inline-block;
 }
-#review .under-box {
+#review-blogs .under-box {
   float: left;
   height: 26pt;
   width: 100%;
@@ -673,7 +688,7 @@ body {
   border-top: solid;
   border-width: 1px;
 }
-#review .author-box {
+#review-blogs .author-box {
   float: left;
   background-color: #FFFFFF;
   height: 100%;
@@ -681,28 +696,45 @@ body {
   font-weight: 750;
   display: table;
 }
-#review .author-p {
+#review-blogs .author-p {
   text-align: center;
   vertical-align: middle;
   display: table-cell;
 }
-#review .category-box {
+#review-blogs .category-box {
   float: left;
-  background-color: #FFFFFF;
   height: 100%;
   width: 25%;
   display: table;
 }
-#review .rating-box {
+#review-blogs .rating-box {
   float: left;
   height: 100%;
   width: 25%;
+  text-align: center;
+  display: table;
 }
-#review .star-img {
+#review-blogs .rating-p {
+  text-align: center;
+  vertical-align: middle;
+  display: table-cell;
+  font-style: italic;
+}
+#review-blogs .rated {
+  color: #f8d303;
+  border-color: black;
+  border-width: 1px;
+}
+#review-blogs .unrated {
+  color: #2e2b2b;
+  border-color: black;
+  border-width: 1px;
+}
+#review-blogs .star-img {
   width: 100%;
   height: 100%;
 }
-#review .timestamp-box {
+#review-blogs .timestamp-box {
   background-color: #FFFFFF;
   color: #818181;
   height: 100%;
@@ -712,12 +744,12 @@ body {
   font-style: italic;
   display: table;
 }
-#review .thumbnail-img {
+#review-blogs .thumbnail-img {
   object-position: center;
   /* Center the image within the element */
   object-fit: cover;
 }
-#review .image-box {
+#review-blogs .image-box {
   float: left;
   width: 100pt;
   height: 90pt;
@@ -725,7 +757,7 @@ body {
   border-right: solid;
   border-width: 1px;
 }
-#review .title-container {
+#review-blogs .title-container {
   float: left;
   text-overflow: ellipsis;
   word-wrap: break-word;
@@ -735,19 +767,19 @@ body {
   background-color: #FFFFFF;
   font-weight: 750;
 }
-#review .title-box {
+#review-blogs .title-box {
   float: left;
   width: 85%;
   height: 45%;
   background-color: #FFFFFF;
   font-weight: 750;
 }
-#review .comment-indicator {
+#review-blogs .comment-indicator {
   height: 25pt;
   width: 15%;
   float: left;
 }
-#review .preview-box {
+#review-blogs .preview-box {
   float: left;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -757,7 +789,7 @@ body {
   background-color: #ffffff;
   font-weight: 750;
 }
-#review .preview-p {
+#review-blogs .preview-p {
   font-size: 13px;
   padding-top: 8px;
   padding-left: 8px;
@@ -766,18 +798,18 @@ body {
   height: 100%;
   width: 100%;
 }
-#review .timestamp-p {
+#review-blogs .timestamp-p {
   text-align: center;
   vertical-align: middle;
   display: table-cell;
 }
-#review .line-clamp p {
+#review-blogs .line-clamp p {
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-#review .center-cropped {
+#review-blogs .center-cropped {
   object-position: center;
   /* Center the image within the element */
   object-fit: cover;
@@ -786,58 +818,67 @@ body {
   border-radius: 100px;
   border: solid 1px #5e5e5e;
 }
-#review .category-p {
+#review-blogs .category-p {
   text-align: center;
   vertical-align: middle;
   display: table-cell;
 }
 @media (max-width: 475px) {
-  #review .article-box {
+  #review-blogs .article-container {
+    width: 97%;
+  }
+  #review-blogs .filter-box {
     width: 100%;
   }
-  #review .image-box {
+  #review-blogs .article-box {
+    width: 100%;
+  }
+  #review-blogs .image-box {
     width: 25%;
   }
-  #review .title-box {
+  #review-blogs .title-box {
     width: 85%;
   }
-  #review .comment-indicator {
+  #review-blogs .comment-indicator {
     width: 15%;
   }
-  #review .title-container {
+  #review-blogs .title-container {
     width: 75%;
   }
-  #review .preview-box {
+  #review-blogs .preview-box {
     width: 100%;
   }
-  #review #app {
+  #review-blogs #app {
     padding: 0px !important;
   }
-  #review .container-fluid {
+  #review-blogs .container-fluid {
     padding: 0px;
   }
-  #review .container {
+  #review-blogs .container {
     padding: 1px;
   }
-  #review .under-box {
+  #review-blogs .under-box {
     height: 20pt;
   }
-  #review .timestamp-box {
+  #review-blogs .timestamp-box {
     font-size: 12px;
   }
-  #review .author-box {
+  #review-blogs .author-box {
     font-size: 12px;
   }
-  #review .author-p {
+  #review-blogs .author-p {
     padding-top: 8px;
   }
-  #review .timestamp-p {
+  #review-blogs .rating-p {
+    padding-top: 6px;
+  }
+  #review-blogs .timestamp-p {
     padding-top: 8px;
   }
-  #review .category-box {
+  #review-blogs .category-box {
     font-size: 12px;
   }
-  #review .category-p {
+  #review-blogs .category-p {
     padding-top: 8px;
   }
 }
