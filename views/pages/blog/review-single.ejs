@@ -8,8 +8,11 @@
             <%- blog.bodyHTML %>
         </div>
         
-        <div v-if="blog.writer.id != me.id && !blog.isReviewed" style="float: left;">
-            <button style="background-color: teal;" v-on:click="approve">Approve</button>
+        <div v-if="!blog.isReviewed" style="float: left;">
+            <button style="background-color: rgb(229, 237, 139);" v-on:click="approve">Approve</button>
+        </div>
+        <div v-if="blog.isReviewed" style="float: left;">
+            <button style="background-color: rgb(204, 204, 3);" v-on:click="unapprove">Un-approve</button>
         </div>
         <div v-if="!blog.isArchived">
             <button style="background-color: rgb(66, 0, 128); color:white; margin-left: 12px;" v-on:click="archive">Archive Blog</button>
@@ -66,6 +69,16 @@
                 formData.append('blogId', this.blog.id)
                 try {
                     await axios.put('/blog/approve', formData)
+                    location.reload()
+                } catch (err) {
+                    console.error(err.toString())
+                }
+            },
+            unapprove: async function() {
+                const formData = new FormData()
+                formData.append('blogId', this.blog.id)
+                try {
+                    await axios.put('/blog/unapprove', formData)
                     location.reload()
                 } catch (err) {
                     console.error(err.toString())

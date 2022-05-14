@@ -62,6 +62,7 @@ module.exports.routes = {
   'POST /blog':                 'blog/create',      
   'DELETE /blog/:blogId':       'blog/delete',
   'PUT /blog/approve': 'blog/approve',
+  'PUT /blog/unapprove': 'blog/unapprove',
   'PUT /blog/archive': 'blog/archive',
   'PUT /blog/unarchive': 'blog/unarchive',
   'POST /blog/update/:blogId':  'blog/update',
