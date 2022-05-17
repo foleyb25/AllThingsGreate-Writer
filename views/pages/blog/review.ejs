@@ -1,10 +1,10 @@
-
+<div id="blog-list">
     <div class="container-fluid pt-5 pb-5">
         <h1 class="text-center">Blogs Ready For Review</h1>
         <div id="app" v-cloak style="padding: 24px">
 
             <!-- Blog posts -->
-            <div id="review-blogs">
+            
                 <div v-for="blog in blogs">
                     <a :href="'/blog/review/'+blog.id">
                     <%- partial('../../partials/blog') %>
@@ -24,9 +24,10 @@
                 <div v-if="isMore" style="margin: auto; text-align: center;">
                     <button class="btn btn-info" v-on:click="paginate()">Load More</button>
                 </div>
-            </div>
+            
         </div>
     </div>
+</div>
 <%- exposeLocalsToBrowser({keys: ['blogs', 'pageNum', 'isMore']}) %>
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

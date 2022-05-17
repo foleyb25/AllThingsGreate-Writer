@@ -18,15 +18,15 @@
     "sails-hook-organics": "^2.2.0",
     "sails-hook-orm": "^2.1.1",
     "sails-hook-sockets": "^2.0.0",
-    "sails-mongo": "^1.0.1",
+    "sails-mongo": "^1.2.0",
     "skipper-better-s3": "^2.3.0",
     "skipper-s3": "^0.6.0"
   },
   "devDependencies": {
     "eslint": "5.16.0",
+    "grunt": "1.0.4",
     "htmlhint": "0.11.0",
     "lesshint": "6.3.6",
-    "grunt": "1.0.4",
     "sails-hook-grunt": "^4.0.0"
   },
   "scripts": {
