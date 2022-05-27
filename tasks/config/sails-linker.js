@@ -26,7 +26,7 @@ module.exports = function(grunt) {
       options: {
         startTag: '<!--SCRIPTS-->',
         endTag: '<!--SCRIPTS END-->',
-        fileTmpl: '<script src="%s?v='+buildDetails.buildNumber+'"></script>',
+        fileTmpl: '<script src="%s"></script>',
         appRoot: '.tmp/public'
       },
       files: {
