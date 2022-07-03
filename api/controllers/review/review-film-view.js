@@ -24,15 +24,15 @@ module.exports = async function(req,res) {
         console.log("unknown film_type")
       }
 
-      const review_data = screenplay.reviews[0]
+      const review_data = !screenplay ? undefined : screenplay.reviews[0]
       if(screenplay!=undefined) {
         reviewed = true
       }
       return res.view("pages/review/review-film-view", {
         film: film,
         type: film_type,
-        value: !review_data.score ? 5 : review_data.score,
-        blog_url: review_data.blog_url,
+        value: !review_data ? 5 : review_data.score,
+        blog_url: !review_data ? '' : review_data.blog_url,
         reviewed: reviewed,
       });
   

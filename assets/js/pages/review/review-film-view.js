@@ -8,7 +8,7 @@ parasails.registerPage('review-film-view', {
       reviewed: window.SAILS_LOCALS.reviewed,
       value: !window.SAILS_LOCALS.value ? window.SAILS_LOCALS.value : 5,
       blog_url: window.SAILS_LOCALS.blog_url,
-      
+      submitted_notification: false,
     },
   
     //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -40,6 +40,7 @@ parasails.registerPage('review-film-view', {
             formData.append('screenplay_type', this.type)
             try {
                 await axios.put('/review/submit', formData)
+                this.submitted_notification = true
             } catch (err) {
                 console.error(err.toString())
             }

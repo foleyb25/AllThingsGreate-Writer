@@ -1,5 +1,5 @@
 <div id="review-film-view" class="review-film-view" v-cloak>
-    <div v-if="reviewed">This screenplay has already been reviewed, you can update it here</div>
+    <div v-if="reviewed" style="background-color: yellow; border: 2px solid black; width: 100%; height: 40px;">You have reviewed this screenplay, you can update it here.</div>
     <div class="poster-box">
         <img :src="'https://image.tmdb.org/t/p/original'+film.poster_path" alt="" class="screenplay-image-box">
     </div>
@@ -34,6 +34,7 @@
         <div class="blog-url-box">
             <div>Blog Review Url</div> <input class="text-input" type="text" v-model="blog_url"> <div style="font-style: italic; font-weight: 200px; color: rgb(163, 163, 163);">Optional</div> 
         </div>
+        <div v-if="submitted_notification" style="background-color: rgb(17, 211, 17); height: 35px; width: 400px; margin: 20px auto; border-radius: 8px; ">Review Successfully Submitted</div>
         <button class="btn btn-info"@click="submitReview()">Submit</button>
     </div>
 </div>
@@ -78,7 +79,6 @@
     .overview-box {
         display: flex;
         flex-direction: column;
-        height: 100px;
         text-align: left;
         margin: 10px;
         width: 69%;

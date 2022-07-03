@@ -64,7 +64,7 @@ module.exports = {
       }
 
       } catch (error) {
-        console.log("An error occured when trying to save Screenplayreview to DB:" +error)
+        console.error("An error occured when trying to save Screenplayreview to DB:" +error)
         return "failed"
       }
       }

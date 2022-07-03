@@ -4,7 +4,7 @@ module.exports = async function(req,res) {
     var blog_url = req.param('blog_url');
     var screenplay_type = req.param('screenplay_type')
     var persisted_screenplay
-    var persist_review_status
+    var persisted_review
     //1) persist screenplay
       try {
         if (screenplay_type=='movie') {
