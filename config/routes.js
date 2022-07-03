@@ -82,9 +82,12 @@ module.exports.routes = {
 
   //VIEWS
   'GET /profile':               'writer/view-profile',
+  'GET /search/film':           'search/search-film-view',
+  'GET /review/film/:id/:filmtype':           'review/review-film-view',
   'GET /user/:id':              'writer/publicprofile',
+  'PUT /search/film/query':     'search/search-film',
+  'PUT /review/submit':         'review/submit',
   
- //           DELETE
  //CRUD
   'DELETE /comment/delete/:commentid': {action:'comment/delete', csrf:false}
   

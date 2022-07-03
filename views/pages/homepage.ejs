@@ -1,43 +1,43 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <div id="blog-list">
-<div class="container-fluid pt-5 pb-5">
-  <h1 class="text-center">Welcome <%= me.fullName %></h1>
-    <p class="text-center">Here is a list of your blogs</p>
-    <div class="col text-center">
-        <a href="/blog/create" class="btn btn-info">Add New Blog</a>
-    </div>  
+    <div class="container-fluid pt-5 pb-5">
+    <h1 class="text-center">Welcome <%= me.fullName %></h1>
+        <p class="text-center">Here is a list of your blogs</p>
+        <div class="col text-center">
+            <a href="/blog/create" class="btn btn-info">Add New Blog</a>
+        </div>  
 
-    <div id="app" v-cloak style="padding: 24px">
+        <div id="app" v-cloak style="padding: 24px">
 
-        <!-- Blog posts -->
-        <div class="review-blogs">
-            <div v-for="blog in blogs">
-                <a :href="'/blog/edit/' +blog.id">
-                    <%- partial('../partials/blog') %>
-                </a>
-                <div style="text-align: center; align-content: center;">
-                    <div v-if="!blog.isArchived">
-                        <button style="background-color: rgb(130, 107, 151); color:white; margin: auto; margin-top: 8px; border-radius: 8px;" v-on:click="archive(blog)">Archive Blog</button>
-                    </div>
-                    <div v-if="blog.isArchived">
-                        <button style="background-color: rgb(77, 14, 133); color:white; margin: auto; margin-top: 8px; border-radius: 8px;" v-on:click="unarchive(blog)">Un-Archive Blog</button>
-                    </div>
-                    <div v-if="!blog.isReviewed" style="background-color: rgb(216, 212, 4); width: 30%; margin: auto; margin-top: 8px;
-                    border-radius: 8px;">
-                        Needs Reviewed
-                    </div>
-                    <div v-if="blog.isArchived" style="background-color: rgb(66, 0, 128); width: 30%; margin: auto; margin-top: 8px;
-                    border-radius: 8px; color:white;">
-                        Archived Blog
+            <!-- Blog posts -->
+            <div class="review-blogs">
+                <div v-for="blog in blogs">
+                    <a :href="'/blog/edit/' +blog.id">
+                        <%- partial('../partials/blog') %>
+                    </a>
+                    <div style="text-align: center; align-content: center;">
+                        <div v-if="!blog.isArchived">
+                            <button style="background-color: rgb(130, 107, 151); color:white; margin: auto; margin-top: 8px; border-radius: 8px;" v-on:click="archive(blog)">Archive Blog</button>
+                        </div>
+                        <div v-if="blog.isArchived">
+                            <button style="background-color: rgb(77, 14, 133); color:white; margin: auto; margin-top: 8px; border-radius: 8px;" v-on:click="unarchive(blog)">Un-Archive Blog</button>
+                        </div>
+                        <div v-if="!blog.isReviewed" style="background-color: rgb(216, 212, 4); width: 30%; margin: auto; margin-top: 8px;
+                        border-radius: 8px;">
+                            Needs Reviewed
+                        </div>
+                        <div v-if="blog.isArchived" style="background-color: rgb(66, 0, 128); width: 30%; margin: auto; margin-top: 8px;
+                        border-radius: 8px; color:white;">
+                            Archived Blog
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div v-if="isMore" style="margin: auto; text-align: center;">
-                <button class="btn btn-info" v-on:click="paginate()">Load More</button>
+                <div v-if="isMore" style="margin: auto; text-align: center;">
+                    <button class="btn btn-info" v-on:click="paginate()">Load More</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 <%- exposeLocalsToBrowser({keys: ['blogs', 'pageNum', 'isMore']}) %>
 

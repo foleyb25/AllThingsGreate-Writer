@@ -1,39 +1,39 @@
 <!-- Check Styling for this partial in views/pages/homepage -->
 
 <div class="article-box">
-<div class="image-box">
-    <img class="thumbnail-img" :src="blog.imageUrl" alt="" style="width: 100%; height: 100%">
-</div>
-<div class="title-container">
-    <div class="title-box line-clamp">
-        <p class="title-p">{{blog.title}}</p>
+    <div class="image-box">
+        <img class="thumbnail-img" :src="blog.imageUrl" alt="" style="width: 100%; height: 100%">
     </div>
-    <div class="comment-indicator" style="text-align: right;margin-top: 4px; padding-right: 4px;">
-        <span class="fas fa-comments" aria-hidden="true"> {{blog.numComments}}</span>
-        <span class="fas fa-eye" aria-hidden="true"> {{blog.views}}</span>
+    <div class="title-container">
+        <div class="title-box line-clamp">
+            <p class="title-p">{{blog.title}}</p>
+        </div>
+        <div class="comment-indicator" style="text-align: right;margin-top: 4px; padding-right: 4px;">
+            <span class="fas fa-comments" aria-hidden="true"> {{blog.numComments}}</span>
+            <span class="fas fa-eye" aria-hidden="true"> {{blog.views}}</span>
+        </div>
+        <!-- <div class="preview-box line-clamp">
+            <p class="preview-p">{{blog.previewText}}</p>
+        </div> -->
     </div>
-    <!-- <div class="preview-box line-clamp">
-        <p class="preview-p">{{blog.previewText}}</p>
-    </div> -->
-</div>
-<div class="under-box">
-    <div class="author-box">
-            <p v-if='blog.writer.nickName == ""'class="author-p">{{blog.writer.fullName}}</p>
-            <p v-if='blog.writer.nickName != ""'class="author-p">{{blog.writer.nickName}}</p>
-        
-    </div>
-    <div class="rating-box" div v-if="blog.numberOfRatings > 0">
-        <p class="rating-p">{{ (blog.rating) / (blog.numberOfRatings)}}/5 <span class="fa fa-star rated"></span></p>
-    </div>
-    <div class="rating-box" div v-if="blog.numberOfRatings == 0">
-        <p class="rating-p">0/5 <span class="fa fa-star unrated"></span></p>
-    </div>
-    <div class="category-box">
-        <p class="category-p">#{{blog.category}}</p>
-    </div>
-    <div class="timestamp-box">
-        <!-- Can use .toLocaleTimeString -->
-        <p class="timestamp-p">{{blog.fromNow}}</p>
-    </div>
-</div> 
+    <div class="under-box">
+        <div class="author-box">
+                <p v-if='blog.writer.nickName == ""'class="author-p">{{blog.writer.fullName}}</p>
+                <p v-if='blog.writer.nickName != ""'class="author-p">{{blog.writer.nickName}}</p>
+            
+        </div>
+        <div class="rating-box" div v-if="blog.numberOfRatings > 0">
+            <p class="rating-p">{{ (blog.rating) / (blog.numberOfRatings)}}/5 <span class="fa fa-star rated"></span></p>
+        </div>
+        <div class="rating-box" div v-if="blog.numberOfRatings == 0">
+            <p class="rating-p">0/5 <span class="fa fa-star unrated"></span></p>
+        </div>
+        <div class="category-box">
+            <p class="category-p">#{{blog.category}}</p>
+        </div>
+        <div class="timestamp-box">
+            <!-- Can use .toLocaleTimeString -->
+            <p class="timestamp-p">{{blog.fromNow}}</p>
+        </div>
+    </div> 
 </div>
