@@ -32,7 +32,7 @@ module.exports = {
             method: 'GET',
             url: 'https://api.flixed.io/v1/movies/tt4574334?idType=imdb&apiKey=y88GmHugzWdqoWakUtpfA7OXUziOBYg8',
             headers: {
-
+              "Accept": "application/json"
             }
           };
           

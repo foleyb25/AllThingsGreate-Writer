@@ -4,6 +4,7 @@ module.exports = async function(req,res) {
   var film
   var screenplay
   var reviewed = false
+
     try {
       if (film_type=='movie') {
         film = await sails.helpers.searchmoviesingle(film_id);
@@ -25,7 +26,7 @@ module.exports = async function(req,res) {
       }
 
       const review_data = !screenplay ? undefined : screenplay.reviews[0]
-      if(screenplay!=undefined) {
+      if(screenplay!=undefined && screenplay.reviews.length > 0) {
         reviewed = true
       }
       return res.view("pages/review/review-film-view", {

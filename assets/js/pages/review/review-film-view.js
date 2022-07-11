@@ -8,7 +8,10 @@ parasails.registerPage('review-film-view', {
       reviewed: window.SAILS_LOCALS.reviewed,
       value: !window.SAILS_LOCALS.value ? window.SAILS_LOCALS.value : 5,
       blog_url: window.SAILS_LOCALS.blog_url,
-      submitted_notification: false,
+      is_submitted: false,
+      is_10_and_blog_blank: false,
+      need_www: false,
+      invalid_url: false,
     },
   
     //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -39,11 +42,15 @@ parasails.registerPage('review-film-view', {
             formData.append('blog_url', this.blog_url)
             formData.append('screenplay_type', this.type)
             try {
-                await axios.put('/review/submit', formData)
-                this.submitted_notification = true
+                const result = await axios.put('/review/submit', formData)
+                this.is_submitted = result.data.is_submitted
+                this.is_10_and_blog_blank = result.data.is_10_and_blog_blank
+                this.need_www = result.data.need_www
+                this.invalid_url = result.data.invalid_url
             } catch (err) {
                 console.error(err.toString())
             }
+
         },
     },
     computed: {

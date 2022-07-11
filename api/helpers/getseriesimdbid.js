@@ -41,7 +41,6 @@ module.exports = {
       };
       
       axios.request(options).then( async function (response) {
-          console.log(response.data.Search[0]);
           const show = response.data.Search[0]
           return exits.success(response.data.Search[0].imdbID)
           

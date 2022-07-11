@@ -1,3 +1,4 @@
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <div id="review-film-view" class="review-film-view" v-cloak>
     <div v-if="reviewed" style="background-color: yellow; border: 2px solid black; width: 100%; height: 40px;">You have reviewed this screenplay, you can update it here.</div>
     <div class="poster-box">
@@ -34,11 +35,14 @@
         <div class="blog-url-box">
             <div>Blog Review Url</div> <input class="text-input" type="text" v-model="blog_url"> <div style="font-style: italic; font-weight: 200px; color: rgb(163, 163, 163);">Optional</div> 
         </div>
-        <div v-if="submitted_notification" style="background-color: rgb(17, 211, 17); height: 35px; width: 400px; margin: 20px auto; border-radius: 8px; ">Review Successfully Submitted</div>
+        <div v-if="is_submitted" style="background-color: rgb(17, 211, 17); height: 35px; width: 400px; margin: 20px auto; border-radius: 8px; ">Review Successfully Submitted</div>
+        <div v-if="is_10_and_blog_blank" style="background-color: rgb(219, 234, 57); height: 35px; width: 400px; margin: 20px auto; border-radius: 8px; ">Must have a blog written for a 10 banger</div>
+        <div v-if="need_www" style="background-color: rgb(219, 234, 57); height: 35px; width: 400px; margin: 20px auto; border-radius: 8px; ">Must include www in your url</div>
+        <div v-if="invalid_url" style="background-color: rgb(219, 234, 57); height: 35px; width: 400px; margin: 20px auto; border-radius: 8px; ">Invalid url</div>
         <button class="btn btn-info"@click="submitReview()">Submit</button>
     </div>
 </div>
-<%- exposeLocalsToBrowser({keys: ['film', 'type', 'value', 'blog_url', 'reviewed']}) %>
+<%- exposeLocalsToBrowser({keys: ['film', 'type', 'value', 'blog_url', 'reviewed', 'is_submitted', 'is_10_and_blog_blank', 'need_www', 'invalid_url']}) %>
 
 <style>
     .review-film-view {

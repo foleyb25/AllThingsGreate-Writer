@@ -45,13 +45,11 @@ module.exports = {
       }
       };
       axios.request(options).then( async function (response) {
-          console.log(response.data);
           var imdb_score = ''
           var rotten_score = ''
           var metacritic_score = ''
           var screenplay_ratings = response.data.Ratings
           for(i in screenplay_ratings) {
-              console.log(i)
               switch (screenplay_ratings[i].Source) {
                   case 'Internet Movie Database':
                       imdb_score = screenplay_ratings[i].Value
@@ -80,8 +78,8 @@ module.exports = {
           revenue: inputs.show.revenue,
           budget: inputs.show.budget,
           box_office: response.data.BoxOffice,
-          poster_path: inputs.show.poster_path,
-          backdrop_path: inputs.show.backdrop_path,
+          poster_path: 'https://image.tmdb.org/t/p/original'+inputs.show.poster_path,
+          backdrop_path: 'https://image.tmdb.org/t/p/original'+inputs.show.backdrop_path,
           homepage_url: inputs.show.homepage,
           tmdb_score: inputs.show.vote_average,
           imdb_score: imdb_score,
