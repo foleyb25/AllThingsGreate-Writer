@@ -82,10 +82,10 @@ module.exports.routes = {
 
   //VIEWS
   'GET /profile':               'writer/view-profile',
-  'GET /search/film':           'search/search-film-view',
-  'GET /review/film/:id/:filmtype':           'review/review-film-view',
+  'GET /search/screenplay':           'search/search-screenplay-view',
+  'GET /review/screenplay/:imdb_id':           'review/review-screenplay-view',
   'GET /user/:id':              'writer/publicprofile',
-  'PUT /search/film/query':     'search/search-film',
+  'PUT /search/screenplay/query':     'search/search-screenplay',
   'PUT /review/submit':         'review/submit',
   
  //CRUD

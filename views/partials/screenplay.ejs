@@ -1,0 +1,17 @@
+<div class="screenplayContainer" v-if="screenplay.Poster != 'N/A'">
+    
+    <div class="image-box">
+        <img class="poster-image" :src="screenplay.Poster" alt="">
+    </div>
+    <div class="title-box">
+        {{screenplay.Title}}
+    </div>
+    <div class="button-box">
+        <a :href="'/review/screenplay/'+screenplay.imdbID">Review</a>
+    </div>
+    
+</div>
+
+
+
+    

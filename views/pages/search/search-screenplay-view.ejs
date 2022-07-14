@@ -1,0 +1,24 @@
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<div id="search-screenplay-view" v-cloak style="padding: 24px">
+    <div class='search-screenplay-container'>
+        <input type="text" placeholder="Search screenplays" name="search" @keypress="clearContents($event)">
+        <button v-on:click="search()" style="margin: 4px;">Search</button>
+    </div>
+    <div class="screenplay-list">
+        <div v-for="screenplay in screenplayList">
+            <%- partial('../../partials/screenplay') %>
+        </div>
+    </div>
+    <div class='search-screenplay-container'>
+        <div v-if="loading"class="half-circle-spinner">
+            <div class="circle circle-1"></div>
+            <div class="circle circle-2"></div>
+        </div>
+        <div v-if="noResults && !loading">No results found</div>
+        <button v-if="screenplayList!=undefined && isMore && !loading"class="btn btn-info"v-on:click="search()">Load More</button>
+        <div v-if="!isMore && pageNum!=0 && !noResults && !loading" >No More screenplays To Show</div>
+    </div>
+</div>
+<%- exposeLocalsToBrowser({keys: ['screenplayList', 'morescreenplays', 'pageNum', 'isMore', 'noResults']}) %>
+
+    

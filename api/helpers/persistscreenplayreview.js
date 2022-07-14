@@ -1,11 +1,11 @@
 module.exports = {
-    friendlyName: 'persist movie or tv show review',
-    description: 'save movie or tv show review data to database',
+    friendlyName: 'persist screenplay review',
+    description: 'save screenplay review data to database',
   
     inputs: {
       screenplay_id: {
         type: 'ref',
-        description: 'id of show or movie to persist'
+        description: 'id of show or screenplay to persist'
       },
 
       writer_id: {
@@ -41,16 +41,10 @@ module.exports = {
     fn: async function (inputs, exits) {
 
       try {
-        var review_record = await Screenplayreview.find({screenplay: inputs.screenplay_id}).populate("writer")
+        var review_record = await Screenplayreview.findOne({screenplay: inputs.screenplay_id, writer: inputs.writer_id}).populate("writer")
         //1) Just save this one to the database, no API calls necessary
-        var already_reviewed = false 
-        for(var i in review_record) {
-          if(review_record[i].writer.id == inputs.writer_id) {
-            already_reviewed = true;
-            break;
-          }
-        }
-      if(!already_reviewed) {
+
+      if(!review_record) {
         const screenplay_review_record = await Screenplayreview.create({
           writer: inputs.writer_id,
           screenplay: inputs.screenplay_id,
@@ -60,7 +54,7 @@ module.exports = {
         return exits.success(screenplay_review_record)
       } else {
         console.log("A review has already been made for this screenplay, updating record...")
-        const screenplay_review_record = await Screenplayreview.update({id: inputs.id}).set({
+        const screenplay_review_record = await Screenplayreview.update({id: review_record.id}).set({
           score: Number(inputs.rating),
           blog_url: inputs.blog_url,
         }).fetch();

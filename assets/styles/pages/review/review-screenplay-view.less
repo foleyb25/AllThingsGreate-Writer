@@ -1,0 +1,123 @@
+#review-screenplay-view {
+    .review-screenplay-view {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+
+    .poster-box {
+        text-align: center;
+        margin: 20px;
+    }
+
+    .screenplay-image-box {
+        height: 450px;
+        width: 300px;
+        margin: auto;
+    }
+
+    .title-box {
+        height: 25px;
+        width: 100%;
+        text-align: center;
+        font-size: 1.25rem;
+        font-weight: 700;
+    }
+
+    .details-box {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .details-box div {
+        margin: 10px;
+    }
+
+    .overview-box {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        margin: 10px;
+        width: 69%;
+    }
+
+    .rating-box {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        margin: 10px;
+    }
+
+    .rating-number-box {
+        height: 50px;
+        font-size: 2.4rem;
+        font-weight: 900;
+        margin: 5px;
+    }
+
+    .blog-url-box {
+        display: flex;
+        flex-direction: row;
+        margin: 10px;
+    }
+
+    .blog-url-box div {
+        margin: 10px;
+    }
+
+    .divider {
+        border-top: 3px solid rgb(120, 120, 120);
+        border-radius: 5px;
+        margin: 25px;
+        width: 75%
+    }
+
+    .text-input {
+        width: 300px;
+        height: 25px;
+        margin-top: 10px;
+    }
+
+    half-circle-spinner, .half-circle-spinner * {
+      box-sizing: border-box;
+    }
+
+    .half-circle-spinner {
+      width: 60px;
+      height: 60px;
+      border-radius: 100%;
+      position: relative;
+      margin: 20px auto
+    }
+
+    .half-circle-spinner .circle {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 100%;
+      border: calc(60px / 10) solid transparent;
+    }
+
+    .half-circle-spinner .circle.circle-1 {
+      border-top-color: @brand-black;
+      animation: half-circle-spinner-animation 1s infinite;
+    }
+
+    .half-circle-spinner .circle.circle-2 {
+      border-bottom-color: @brand-blue;
+      animation: half-circle-spinner-animation 1s infinite alternate;
+    }
+
+    @keyframes half-circle-spinner-animation {
+      0% {
+        transform: rotate(0deg);
+
+      }
+      100%{
+        transform: rotate(360deg);
+      }
+    }
+
+}

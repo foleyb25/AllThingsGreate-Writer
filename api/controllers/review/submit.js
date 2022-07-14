@@ -2,7 +2,6 @@ module.exports = async function(req,res) {
     var screenplay = JSON.parse(req.param('screenplay'));
     var rating = req.param('rating');
     var blog_url = req.param('blog_url');
-    var screenplay_type = req.param('screenplay_type')
     var persisted_screenplay
     var persisted_review
     var persisted_service
@@ -80,18 +79,12 @@ module.exports = async function(req,res) {
 
     //1) persist screenplay
       try {
-        if (screenplay_type=='movie') {
-          persisted_screenplay = await sails.helpers.persistmovie(screenplay);
-        } else if (screenplay_type=='tv') {
-          persisted_screenplay = await sails.helpers.persisttvshow(screenplay);
-        } else {
-          console.log("unknown film_type")
-        }
-    //2) persist review
-    persisted_review = await sails.helpers.persistscreenplayreview(persisted_screenplay.id, req.me.id, rating, blog_url);
+        persisted_screenplay = await sails.helpers.persistscreenplay(screenplay);
+        //2) persist review
+        persisted_review = await sails.helpers.persistscreenplayreview(persisted_screenplay.id, req.me.id, rating, blog_url);
 
-    //3) persist watchService(s)
-    // persisted_service = await sails.helpers.flixed.getflixedmoviedetails("flixed")
+        //3) persist watchService(s)
+        persisted_service = await sails.helpers.persistwatchservice(persisted_screenplay)
 
 
 

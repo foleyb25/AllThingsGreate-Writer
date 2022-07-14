@@ -9,10 +9,15 @@ module.exports = {
             logo_url: this.logo_url,
             createdAt: this.createdAt,
             updatedAt: this.updatedAt,
+            tmdb_provider_id: this.tmdb_provider_id,
           }
     },
 
     attributes: {
+        tmdb_provider_id: {
+            type: 'number'
+        },
+
         name: {
             type: 'string'
         },
@@ -33,7 +38,7 @@ module.exports = {
             type: 'string'
         },
 
-        owner: {
+        screenplay: {
             model: 'screenplay'
         }
     }
