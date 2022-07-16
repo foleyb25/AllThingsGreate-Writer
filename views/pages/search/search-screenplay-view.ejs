@@ -1,18 +1,19 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <div id="search-screenplay-view" v-cloak style="padding: 24px">
-    <div class='search-screenplay-container'>
+    <div class='container-fluid d-flex flex-column align-items-center'>
         <input type="text" placeholder="Search screenplays" name="search" @keypress="clearContents($event)">
         <button v-on:click="search()" style="margin: 4px;">Search</button>
     </div>
-    <div class="screenplay-list">
+    <div class="screenplay-list-js d-flex flex-wrap flex-row justify-content-center">
         <div v-for="screenplay in screenplayList">
-            <%- partial('../../partials/screenplay') %>
+            <a :href="'/review/screenplay/'+screenplay.imdbID">
+                <%- partial('../../partials/screenplay') %>
+            </a>
         </div>
     </div>
     <div class='search-screenplay-container'>
-        <div v-if="loading"class="half-circle-spinner">
-            <div class="circle circle-1"></div>
-            <div class="circle circle-2"></div>
+        <div class="d-flex justify-content-center">
+            <div v-if="loading" class="loader"></div>
         </div>
         <div v-if="noResults && !loading">No results found</div>
         <button v-if="screenplayList!=undefined && isMore && !loading"class="btn btn-info"v-on:click="search()">Load More</button>

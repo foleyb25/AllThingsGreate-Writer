@@ -28,7 +28,7 @@ parasails.registerPage('search-screenplay-view', {
     methods: {
 
     clearContents: async function() {
-      $('.screenplay-list div').empty();
+      $('.screenplay-list-js div').empty();
       this.pageNum = 0;
       this.isMore = false;
     },

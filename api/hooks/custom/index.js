@@ -219,7 +219,7 @@ will be disabled and/or hidden in the UI.
               // Exclude any fields corresponding with attributes that have `protect: true`.
               var sanitizedUser = _.extend({}, loggedInUser);
               for (let attrName in Writer.attributes) {
-                if (Writer.attributes[attrName].Writer) {
+                if (Writer.attributes[attrName].protect) {
                   delete sanitizedUser[attrName];
                 }
               }//∞

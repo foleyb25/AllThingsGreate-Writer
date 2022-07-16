@@ -1,10 +1,10 @@
 <div id="app" v-cloak style="padding: 24px">
     <div class="container-fluid pt-5 pb-5">
-            <h1 v-if="blog.isReviewed">Blog Approved</h1>
+        <h1 v-if="blog.isReviewed">Blog Approved</h1>
         <h1>Author: {{blog.writer.fullName}}</h1>
         <H1>{{blog.title}}</H1>
         <h2>Views: {{blog.views}}</h2>
-        <div id="preview">
+        <div class="d-flex flex-column align-items-center">
             <%- blog.bodyHTML %>
         </div>
         
@@ -126,6 +126,9 @@
 </script>
 
 <style>
+    :root {
+        --iframe-height: (100% * 4);
+    }
 .center-cropped {
     object-position: center; /* Center the image within the element */
     object-fit: cover;
@@ -133,5 +136,33 @@
     height: 64px;
     border-radius: 100px;
     border: solid 1px rgb(94, 94, 94);
+}
+
+iframe{
+    max-width: 100%;
+}
+
+@media (min-width: 0px) and (max-width: 279px){
+        iframe[height] {
+        height: 100px;
+    }
+}
+
+@media (min-width: 279px) and (max-width: 345px){
+    iframe[height] {
+        height: 130px;
+    }
+}
+
+@media (min-width: 345px) and (max-width: 460px){
+    iframe[height] {
+        height: 180px;
+    }
+}
+
+@media (min-width: 460px) and (max-width: 576px) {
+    iframe[height] {
+        height: 220px;
+    }
 }
 </style>

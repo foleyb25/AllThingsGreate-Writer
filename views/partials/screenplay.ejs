@@ -1,15 +1,19 @@
-<div class="screenplayContainer" v-if="screenplay.Poster != 'N/A'">
-    
-    <div class="image-box">
-        <img class="poster-image" :src="screenplay.Poster" alt="">
+<div id="screenplay-container">
+    <div class="screenplay-container-class d-flex flex-column" v-if="screenplay.Poster != 'N/A'">
+        <div class="image-box">
+            <img class="poster-image" :src="screenplay.Poster" alt="">
+        </div>
+        <div class="title-box">
+            {{screenplay.Title}}
+        </div>
+
+        <div v-if="isNaN(Number(screenplay.Year.charAt(screenplay.Year.length-1)))"class="year-released w-100 font-italic text-center">
+            {{screenplay.Year}}Present
+        </div>
+        <div v-if="!isNaN(Number(screenplay.Year.charAt(screenplay.Year.length-1)))"class="year-released w-100 font-italic text-center">
+            {{screenplay.Year}}
+        </div>
     </div>
-    <div class="title-box">
-        {{screenplay.Title}}
-    </div>
-    <div class="button-box">
-        <a :href="'/review/screenplay/'+screenplay.imdbID">Review</a>
-    </div>
-    
 </div>
 
 

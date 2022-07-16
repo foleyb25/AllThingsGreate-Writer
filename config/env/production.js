@@ -372,7 +372,7 @@ module.exports = {
   custom: {
     //baseUrl: 'localhost:1337/',
     baseUrl: 'https://allthingsgreat-writer.herokuapp.com',
-    internalEmailAddress: 'customer.serice@atgr8.com',
+    internalEmailAddress: 'support@allthingsgreat.com.com',
 
     // mailgunDomain: 'mg.example.com',
     // mailgunSecret: 'key-prod_fake_bd32301385130a0bafe030c',

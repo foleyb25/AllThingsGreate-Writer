@@ -26,7 +26,7 @@
         <label for="selectImage">Select an image thumbnail (required)</label>
         <img id="selectedImage" class="center-cropped" src="/images/startup.png">
         <br>
-        <input name="imageFile" type="file" @change="handleFileChange(event)"required>
+        <input name="imageFile" type="file" onchange="handleFileChange(event)"required>
         <div id="notify-box">
 
         </div>
@@ -47,7 +47,7 @@
         const filename = file.name;
         
         const extension = filename.split('.').pop()
-        if (extension == 'jpg' || extension == 'png' || extension == 'gif' || extension == 'jpeg') {
+        if (extension.toLowerCase() == 'jpg' || extension.toLowerCase() == 'png' || extension.toLowerCase() == 'gif' || extension.toLowerCase() == 'jpeg') {
             document.getElementById('create-btn').disabled = false
             document.getElementById('notify-box').innerHTML = ''
             const imageSrc = window.URL.createObjectURL(file)

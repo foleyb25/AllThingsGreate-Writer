@@ -1,30 +1,23 @@
-<div id="blog-list">
-    <div class="container-fluid pt-5 pb-5">
-        <h1 class="text-center">Blogs Ready For Review</h1>
-        <div id="app" v-cloak style="padding: 24px">
-
-            <!-- Blog posts -->
-            
-                <div v-for="blog in blogs">
-                    <a :href="'/blog/review/'+blog.id">
-                    <%- partial('../../partials/blog') %>
-                    </a>
-                    <div style="text-align: center; align-content: center;">
-                        <!-- <button class="btn btn-danger"v-on:click="deleteBlog(blog)">Delete Blog</button> -->
-                        <div v-if="!blog.isReviewed" style="background-color: rgb(216, 212, 4); width: 30%; margin: auto; margin-top: 8px;
-                        border-radius: 8px;">
-                            Needs Reviewed
-                        </div>
-                        <div v-if="blog.isArchived" style="background-color: rgb(66, 0, 128); width: 30%; margin: auto; margin-top: 8px;
-                        border-radius: 8px; color:white;">
-                            Archived Blog
-                        </div>
-                    </div>
+<h1 class="text-center">Blogs Ready For Review</h1>
+<div id="app" v-cloak class="d-flex flex-column justify-content-center">
+    <div class="container-fluid d-flex flex-column justify-content-center" style="max-width: 620px;">
+        <div v-for="blog in blogs" class="mt-5">
+            <a :href="'/blog/review/'+blog.id">
+            <%- partial('../../partials/blog') %>
+            </a>
+            <div class="w-100 m-2 d-flex flex-column justify-content-center align-items-center text-center">
+                <div v-if="!blog.isReviewed" class="w-25" style="background-color: rgb(216, 212, 4); width: 30%; margin: auto; margin-top: 8px;
+                border-radius: 8px;">
+                    Needs Reviewed
                 </div>
-                <div v-if="isMore" style="margin: auto; text-align: center;">
-                    <button class="btn btn-info" v-on:click="paginate()">Load More</button>
+                <div v-if="blog.isArchived" class="w-25"style="background-color: rgb(66, 0, 128); height: 25px; margin: auto; margin-top: 8px;
+                border-radius: 8px; color:white;">
+                    Archived Blog
                 </div>
-            
+            </div>
+        </div>
+        <div v-if="isMore" style="margin: auto; text-align: center;">
+            <button class="btn btn-info" v-on:click="paginate()">Load More</button>
         </div>
     </div>
 </div>

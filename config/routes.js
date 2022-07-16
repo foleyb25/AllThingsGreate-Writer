@@ -20,6 +20,7 @@ module.exports.routes = {
 
   'GET /email/confirm':      { action: 'entrance/confirm-email' },
   'GET /email/confirmed':    { action: 'entrance/view-confirmed-email' },
+  'GET /email/confirmed/sent':    { action: 'entrance/send-confirmed-email' },
 
   'GET /login':              { action: 'entrance/view-login' },
   'GET /password/forgot':    { action: 'entrance/view-forgot-password' },
@@ -27,7 +28,6 @@ module.exports.routes = {
 
   'GET /account':            { action: 'account/view-account-overview' },
   'GET /account/password':   { action: 'account/view-edit-password' },
-  'GET /account/profile':    { action: 'account/view-edit-profile' },
 
   //  ╔╦╗╦╔═╗╔═╗  ╦═╗╔═╗╔╦╗╦╦═╗╔═╗╔═╗╔╦╗╔═╗   ┬   ╔╦╗╔═╗╦ ╦╔╗╔╦  ╔═╗╔═╗╔╦╗╔═╗
   //  ║║║║╚═╗║    ╠╦╝║╣  ║║║╠╦╝║╣ ║   ║ ╚═╗  ┌┼─   ║║║ ║║║║║║║║  ║ ║╠═╣ ║║╚═╗
@@ -89,6 +89,6 @@ module.exports.routes = {
   'PUT /review/submit':         'review/submit',
   
  //CRUD
-  'DELETE /comment/delete/:commentid': {action:'comment/delete', csrf:false}
+ // 'DELETE /comment/delete/:commentid': {action:'comment/delete', csrf:false}
   
 };
