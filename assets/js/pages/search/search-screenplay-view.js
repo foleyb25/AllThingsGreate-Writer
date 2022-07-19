@@ -1,12 +1,14 @@
-parasails.registerPage('search-film-view', {
+parasails.registerPage('search-screenplay-view', {
     //  ╦╔╗╔╦╔╦╗╦╔═╗╦    ╔═╗╔╦╗╔═╗╔╦╗╔═╗
     //  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
     //  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
     data: {
-      movieList: window.SAILS_LOCALS.movieList,
-      moreMovies: window.SAILS_LOCALS_moreMovies,
+      screenplayList: window.SAILS_LOCALS.screenplayList,
+      morescreenplays: window.SAILS_LOCALS_morescreenplays,
       pageNum: 0,
       isMore: window.SAILS_LOCALS.isMore,
+      noResults: window.SAILS_LOCALS.noResults,
+      loading: false
     },
   
     //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -26,8 +28,9 @@ parasails.registerPage('search-film-view', {
     methods: {
 
     clearContents: async function() {
-      $('#movieList div').empty();
+      $('.screenplay-list-js div').empty();
       this.pageNum = 0;
+      this.isMore = false;
     },
   
     search: async function() {
@@ -38,21 +41,21 @@ parasails.registerPage('search-film-view', {
       formData.append('searchString', searchString)
       formData.append('pageNum', nextPage)
       try {
-        const res = await axios.put('/search/film/query', formData)
-        this.moreMovies = res.data.moreMovies
-        if (this.movieList!=undefined) {
-          this.movieList.push.apply(this.movieList, res.data.moreMovies)
+        this.loading = true
+        const res = await axios.put('/search/screenplay/query', formData)
+        this.loading = false
+        this.morescreenplays = res.data.morescreenplays
+        if (this.screenplayList!=undefined) {
+          this.screenplayList.push.apply(this.screenplayList, res.data.morescreenplays)
         } else {
-          this.movieList = res.data.movieList
-          for(movie in this.movieList) {
-            console.log(movie.title)
-          }
+          this.screenplayList = res.data.screenplayList
         }
-        console.log(typeof(this.movieList))
         this.pageNum = nextPage
         this.isMore = res.data.isMore
+        this.noResults = res.data.noResults
         
     } catch (err) {
+        this.loading = false
         console.error(err.toString())
     }
     }

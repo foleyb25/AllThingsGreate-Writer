@@ -20,6 +20,7 @@ module.exports.routes = {
 
   'GET /email/confirm':      { action: 'entrance/confirm-email' },
   'GET /email/confirmed':    { action: 'entrance/view-confirmed-email' },
+  'GET /email/confirmed/sent':    { action: 'entrance/send-confirmed-email' },
 
   'GET /login':              { action: 'entrance/view-login' },
   'GET /password/forgot':    { action: 'entrance/view-forgot-password' },
@@ -27,7 +28,6 @@ module.exports.routes = {
 
   'GET /account':            { action: 'account/view-account-overview' },
   'GET /account/password':   { action: 'account/view-edit-password' },
-  'GET /account/profile':    { action: 'account/view-edit-profile' },
 
   //  ╔╦╗╦╔═╗╔═╗  ╦═╗╔═╗╔╦╗╦╦═╗╔═╗╔═╗╔╦╗╔═╗   ┬   ╔╦╗╔═╗╦ ╦╔╗╔╦  ╔═╗╔═╗╔╦╗╔═╗
   //  ║║║║╚═╗║    ╠╦╝║╣  ║║║╠╦╝║╣ ║   ║ ╚═╗  ┌┼─   ║║║ ║║║║║║║║  ║ ║╠═╣ ║║╚═╗
@@ -82,13 +82,13 @@ module.exports.routes = {
 
   //VIEWS
   'GET /profile':               'writer/view-profile',
-  'GET /search/film':           'search/search-film-view',
-  'GET /review/film/:id/:filmtype':           'review/review-film-view',
+  'GET /search/screenplay':           'search/search-screenplay-view',
+  'GET /review/screenplay/:imdb_id':           'review/review-screenplay-view',
   'GET /user/:id':              'writer/publicprofile',
-  'PUT /search/film/query':     'search/search-film',
+  'PUT /search/screenplay/query':     'search/search-screenplay',
   'PUT /review/submit':         'review/submit',
   
  //CRUD
-  'DELETE /comment/delete/:commentid': {action:'comment/delete', csrf:false}
+ // 'DELETE /comment/delete/:commentid': {action:'comment/delete', csrf:false}
   
 };

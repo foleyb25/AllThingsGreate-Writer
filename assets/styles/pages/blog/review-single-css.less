@@ -1,0 +1,53 @@
+#review-single-css {
+    .center-cropped {
+        object-position: center; /* Center the image within the element */
+        object-fit: cover;
+        width: 64px;
+        height: 64px;
+        border-radius: 100px;
+        border: solid 1px rgb(94, 94, 94);
+    }
+    
+    iframe{
+        max-width: 100%;
+    }
+
+    img[style] {
+        max-width: 100% !important;
+        height:auto !important;
+    }
+
+    img {
+        max-width: 100% !important;
+        height:auto !important;
+    }
+    
+    table {
+        max-width: 100% !important;
+        height: auto;
+    }
+    
+    @media (min-width: 0px) and (max-width: 279px){
+            iframe[height] {
+            height: 100px;
+        }
+    }
+    
+    @media (min-width: 279px) and (max-width: 345px){
+        iframe[height] {
+            height: 130px;
+        }
+    }
+    
+    @media (min-width: 345px) and (max-width: 460px){
+        iframe[height] {
+            height: 180px;
+        }
+    }
+    
+    @media (min-width: 460px) and (max-width: 576px) {
+        iframe[height] {
+            height: 220px;
+        }
+    }
+}

@@ -225,6 +225,7 @@ body {
 }
 #page-wrap header .logo {
   height: 20px;
+  display: block;
 }
 #page-wrap header a {
   cursor: pointer;

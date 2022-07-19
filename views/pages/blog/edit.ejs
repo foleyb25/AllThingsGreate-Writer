@@ -1,17 +1,12 @@
 
 <script src="https://cdn.ckeditor.com/4.7.3/full-all/ckeditor.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
-
+<div id="edit-css">
     <div class="container-fluid pt-5 pb-5">
         <form action="/blog/update/<%- blog.id %>"method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="title">Title</label>
                 <input type="text" name="titleText" class="form-control" value="<%- blog.title %>">
             </div>
-            <!-- <div class="form-group">
-                <label for="preview">Preview Text</label>
-                <textarea name="previewText" minlength="276" rows="4" cols="100" class="form-control"><%- blog.previewText %></textarea>
-            </div> -->
             <div class="form-group">
                 <label for="body">Body</label>
                 <textarea name="bodyText" cols="30" rows="10" class="form-control"></textarea>
@@ -40,20 +35,18 @@
                 Update
             </button>
         </form>
-        <br>
-        <br>
-        <br>
         <H1>Here is a preview of your blog</H1>
-        <div id="preview">
+    <div id="app" v-cloak style="padding: 24px">
+        <div id="preview" class="d-flex flex-column align-items-center">
             <%- blog.bodyHTML %>
         </div>
-
-<div id="app" v-cloak style="padding: 24px">
-    <div v-if="!blog.isArchived">
-        <button style="background-color: rgb(66, 0, 128); color:white; margin-left: 12px;" v-on:click="archive">Archive Blog</button>
+        <div v-if="!blog.isArchived">
+            <button style="background-color: rgb(66, 0, 128); color:white; margin-left: 12px;" v-on:click="archive">Archive Blog</button>
+        </div>
+        <div v-if="blog.isArchived">
+            <button style="background-color: rgb(117, 98, 134); color:white; margin-left: 12px;" v-on:click="unarchive">Un-Archive Blog</button>
+        </div>
     </div>
-    <div v-if="blog.isArchived">
-        <button style="background-color: rgb(117, 98, 134); color:white; margin-left: 12px;" v-on:click="unarchive">Un-Archive Blog</button>
     </div>
 </div>
 
@@ -103,13 +96,3 @@
     
 
 </script>
-
-<style>
-    .center-cropped {
-            object-position: center; /* Center the image within the element */
-            object-fit: cover;
-            width: 150px;
-            height: 150px;
-            border: solid 1px rgb(94, 94, 94);
-        }
-</style>

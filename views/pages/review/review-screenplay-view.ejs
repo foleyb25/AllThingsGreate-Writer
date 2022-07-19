@@ -1,0 +1,48 @@
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<div class="container-fluid">
+<div id="review-screenplay-view" class="review-screenplay-view" v-cloak>
+    <div v-if="reviewed" style="background-color: yellow; border: 2px solid black; width: 100%; height: auto;">
+        You have reviewed this screenplay, you can update it here.
+    </div>
+        <div class="poster-box">
+            <img :src="screenplay.Poster" alt="" class="screenplay-image-box">
+        </div>
+        <div class="title-box" v-if="screenplay.Title">
+            {{screenplay.Title}}
+        </div>
+        <div class="details-box">
+            <div v-if="screenplay.Runtime">Runtime: {{screenplay.Runtime}}</div>
+            <div v-if="screenplay.Released">Release Date: {{screenplay.Released}}</div>
+            <div v-if="screenplay.Writer">Writers: {{screenplay.Writer}}</div>
+            <div v-if="screenplay.Actors">Actors: {{screenplay.Actors}}</div>
+            <div>Type: {{screenplay.Type}}</div>
+        </div>
+        <hr class="divider">
+        <div class="overview-box">
+            <div>Overview:</div>
+            <div>{{screenplay.Plot}}</div>
+        </div>
+        <hr class="divider">
+        <div class="rating-box">
+            <div id="rating-number-box" class="rating-number-box">
+                <span v-text="total"></span>
+            </div>
+            <input type="range" step=".1" min="0" max="10" v-model="value">
+            <div class="blog-url-box">
+                <div>Blog Review Url</div> <input class="text-input" type="text" v-model="blog_url"> <div style="font-style: italic; font-weight: 200px; color: rgb(163, 163, 163);">Optional</div> 
+            </div>
+            <div v-if="is_submitted && !loading" style="background-color: rgb(17, 211, 17); height: 35px; width: 100%; margin: 20px auto; border-radius: 8px; ">Review Successfully Submitted</div>
+            <div v-if="is_10_and_blog_blank && !loading" style="background-color: rgb(219, 234, 57); height: 35px; width: 100%; margin: 20px auto; border-radius: 8px; ">Must have a blog written for a 10 banger</div>
+            <div v-if="need_www && !loading" style="background-color: rgb(219, 234, 57); height: 35px; width: 100%; margin: 20px auto; border-radius: 8px; ">Must include www in your url</div>
+            <div v-if="invalid_url && !loading" style="background-color: rgb(219, 234, 57); height: 35px; width: 100%; margin: 20px auto; border-radius: 8px; ">Invalid url</div>
+            <div class="d-flex justify-content-center">
+                <div v-if="loading" class="loader"></div>
+            </div>
+            <button v-if="!loading"class="btn btn-info"@click="submitReview()">Submit</button>
+        </div>
+</div>
+</div>
+<%- exposeLocalsToBrowser({keys: ['screenplay', 'value', 'blog_url', 'reviewed', 'is_submitted', 'is_10_and_blog_blank', 'need_www', 'invalid_url']}) %>
+<style>
+     
+</style>

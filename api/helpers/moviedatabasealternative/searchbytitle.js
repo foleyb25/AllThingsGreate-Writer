@@ -1,6 +1,6 @@
 module.exports = {
-    friendlyName: 'retrieve imdb id',
-    description: 'get imdb id based on title and release year',
+    friendlyName: 'search for screenplays based on string',
+    description: 'get list of screenplays matching title string',
   
     inputs: {
       title: {
@@ -8,10 +8,11 @@ module.exports = {
         description: 'show to persist'
       },
 
-      release_year: {
-        type: 'ref',
-        description: 'year series was released'
-      }
+        page: {
+            type: 'ref',
+            this: "page to search"
+        }
+
     },
   
   
@@ -30,20 +31,18 @@ module.exports = {
   
     fn: async function (inputs, exits) {
     const axios = require("axios");
-      const options = {
-      method: 'GET',
-      url: 'https://movie-database-alternative.p.rapidapi.com/',
-      params: {s: inputs.title, r: 'json', type: 'series', y: inputs.year, page: '1'},
-      headers: {
+    const options = {
+        method: 'GET',
+        url: 'https://movie-database-alternative.p.rapidapi.com/',
+        params: {s: inputs.title, r: 'json', page: inputs.page},
+        headers: {
           'X-RapidAPI-Key': '0378cb559emsha92428365269fe8p1f4409jsnfb71711af35c',
           'X-RapidAPI-Host': 'movie-database-alternative.p.rapidapi.com'
-      }
+        }
       };
       
-      axios.request(options).then( async function (response) {
-          console.log(response.data.Search[0]);
-          const show = response.data.Search[0]
-          return exits.success(response.data.Search[0].imdbID)
+      await axios.request(options).then( async function (response) {
+          return exits.success(response.data.Search)
           
       }).catch(function (error) {
           console.error(error);

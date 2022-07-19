@@ -2,115 +2,91 @@
 <%- exposeLocalsToBrowser({keys: ['writer']}) %>
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<div id="app" style="padding: 24px" v-cloak>
+
+<div id="app" style="margin-top: 20px;"v-cloak>
     <!-- ACCOUNT SETTINGS -->
-    <div style="margin-bottom: 8px; padding: 16px;
-        background-color: white">
-        <div style="font-weight: bold">
+    <div class="container d-flex flex-column">
+        <div class="font-weight-bold d-flex justify-content-center">
             Account Settings
         </div>
-
-        <div style="background-color: white; padding: 16px">
-
-            <div class="form-item">
-                <div class='form-item-label'>
-                    Email address:
-                </div>
-                <div style="font-size: 14px">
-                    {{writer.emailAddress}}
-                </div>
+        <hr class="w-50">
+        <div class="d-flex flex-row mt-3 justify-content-between">
+            <div class='font-weight-bold'>
+                Email address:
             </div>
-
-            <div  class="form-item">
-                <div class='form-item-label'>
-                    Full name:
-                </div>
-                <input type="text" v-model="writer.fullName"
-                    class="fullname-input">
+            <div>
+                {{writer.emailAddress}}
             </div>
-
-            <div  class="form-item">
-                <div class='form-item-label'>
-                    Nickname:
-                </div>
-                <input type="text"
-                    class="fullname-input" v-model="writer.nickName">
+        </div>
+        <hr class="w-100">
+        <div class="d-flex flex-row mt-3 justify-content-between">
+            <div class='d-flex font-weight-bold'>
+                Full name:
             </div>
-
-            <div class="form-item">
-                <div class='form-item-label'>
-                    Bio:
-                </div>
-                <div style="font-size: 14px">
-                    <textarea v-model="writer.bio"
-                        style="font-size: 14px; padding: 8px; border-radius: 5px; 
-                            width: 300px;
-                            border: solid 1px rgb(206, 206, 206)" rows="15" cols="50">
-                    </textarea>
-                </div>
+            <input type="text" v-model="writer.fullName" class="w-75">
+        </div>
+        <hr class="w-100">
+        <div class="d-flex flex-row mt-3 justify-content-between">
+            <div class='d-flex font-weight-bold'>
+                Nickname:
             </div>
-
-            <div class="form-item">
-                <div class='form-item-label'>
-                    Instagram Handle:
-                </div>
-                <div style="font-size: 14px">
-                    <input type="text"
-                    class="instagram-input" v-model="writer.instagramLink">
-                </div>
+            <input type="text" class="w-75" v-model="writer.nickName">
+        </div>
+        <hr class="w-100">
+        <div class="d-flex flex-row mt-3 justify-content-between" style="height: 200px;">
+            <div class='d-flex font-weight-bold'>
+                Bio:
             </div>
-
-            <div class="form-item">
-                <div class='form-item-label'>
-                    Twitter Handle:
-                </div>
-                <div style="font-size: 14px">
-                    <input type="text"
-                    class="twitter-input" v-model="writer.twitterLink">
-                </div>
+            <textarea class="h-100 w-75"v-model="writer.bio"></textarea>
+        </div>
+        <hr class="w-100">
+        <div class="d-flex flex-row mt-3 justify-content-between">
+            <div class='d-flex font-weight-bold'>
+                Instagram Handle:
             </div>
-
-            <div class="form-item">
-                <div class='form-item-label'>
-                    Snapchat Handle:
-                </div>
-                <div style="font-size: 14px">
-                    <input type="text"
-                    class="snapchat-input" v-model="writer.snapchatLink">
-                </div>
+            <input type="text" v-model="writer.instagramLink" class="w-75">
+        </div>
+        <hr class="w-100">
+        <div class="d-flex flex-row mt-3 justify-content-between">
+            <div class='d-flex font-weight-bold'>
+                Twitter Handle:
             </div>
-
-            <div class="form-item">
-                <div class='form-item-label'>
-                    TikTok Handle:
-                </div>
-                <div style="font-size: 14px">
-                    <input type="text"
-                    class="tiktok-input" v-model="writer.tiktokLink" value="This is place">
-                </div>
+            <input type="text" v-model="writer.twitterLink" class="w-75">
+        </div>
+        <hr class="w-100">
+        <div class="d-flex flex-row mt-3 justify-content-between">
+            <div class='d-flex font-weight-bold'>
+                Snapchat Handle:
             </div>
-
-            <div class="form-item">
-                <div class='form-item-label'>
-                    Profile Picture:
-                </div>
-                <div>
-                    <img class="center-cropped" 
-                        :src="writer.profileImageUrl ? writer.profileImageUrl : '/images/startup.png'">
-                    <div style="margin-top: 12px">
-                        <input type="file" v-on:change="handleprofilePicChange">
-                    </div>
-                </div>
+            <input type="text" v-model="writer.snapchatLink" class="w-75">
+        </div>
+        <hr class="w-100">
+        <div class="d-flex flex-row mt-3 justify-content-between">
+            <div class='d-flex font-weight-bold'>
+                TikTok Handle:
             </div>
-
-            <button v-on:click="handleSave" :disabled="isSaving"
-                v-bind:class="isSaving ? 'disabled-button save-button' : 'blue-button save-button'">
+            <input type="text" v-model="writer.tiktokLink" value="This is place" class="w-75">
+        </div>
+        <hr class="w-100">
+        <div  class="d-flex flex-row justify-content-between mt-3">
+            <div class='font-weight-bold'>
+                Profile Picture:
+            </div>
+            <img class="center-cropped" 
+                :src="writer.profileImageUrl ? writer.profileImageUrl : '/images/startup.png'">
+        </div>
+        <div class="d-flex justify-content-center mt-3 ">
+            <input type="file" v-on:change="handleprofilePicChange">
+        </div>
+        <div id="successMessage" class="w-75" style="background-color: green;"></div>
+        <div class="d-flex justify-content-center mt-3 ">
+            <button class="btn btn-info w-75"v-on:click="handleSave" :disabled="isSaving">
                 Save
             </button>
-
         </div>
     </div>
 </div>
+
 <style>
     [v-cloak] { display:none; }
 
@@ -122,34 +98,6 @@
         border-radius: 100px;
         border: solid 1px rgb(94, 94, 94);
     }
-
-    .blue-button {
-        background-color: dodgerblue
-    }
-
-    .disabled-button {
-        background-color: rgb(201, 201, 201)
-    }
-
-    .form-item-label {
-        font-size: 15px; font-weight: bold; margin-right: 16px; 
-        width: 140px; text-align: right
-    }
-
-    .save-button {
-        flex: 1; width: 100%; 
-        color: white; font-weight: bold;
-        padding: 8px; border: solid; border-radius: 5px; font-size: 16px
-    }
-
-    .form-item {
-        display: flex; align-items: center; margin-bottom: 16px
-    }
-
-    .fullname-input {
-        font-size: 14px; padding: 8px; border-radius: 5px; 
-        border: solid 1px rgb(206, 206, 206)
-    }
 </style>
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -157,6 +105,7 @@
 <script>
     const writer = window.SAILS_LOCALS.writer
     // writer.profileImageUrl = '/images/startup.png'
+    
     const app = new Vue({
         el: "#app",
         data: {
@@ -177,8 +126,11 @@
                 formData.append('tiktokLink', this.writer.tiktokLink)
                 // fire off a post request to update writer
                 try {
+                    this.isSaving = true
                     await axios.post('/profile', formData)
-                    location.reload()
+                    this.isSaving = false
+                    window.alert("Successfully updated")
+                    window.location.reload()
                 } catch (err) {
                     console.error(err.toString())
                 }

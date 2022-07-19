@@ -1,5 +1,4 @@
 <script src="https://cdn.ckeditor.com/4.7.3/full-all/ckeditor.js"></script>
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 
 <div class="container-fluid pt-5 pb-5">
     <form action="/blog" method="post" enctype="multipart/form-data">
@@ -7,10 +6,6 @@
         <label for="title">Title</label>
         <input type="textarea" name="titleText" class="form-control" required>
     </div>
-    <!-- <div class="form-group">
-        <label for="preview">Preview Text (over 350 characters)</label>
-        <textarea name="previewText" minlength="276" rows="4" cols="100" class="form-control"></textarea>
-    </div> -->
     <div class="form-group">
         <label for="body">Body</label>
         <textarea name="bodyText" cols="30" rows="10" class="form-control" required></textarea>
@@ -52,7 +47,7 @@
         const filename = file.name;
         
         const extension = filename.split('.').pop()
-        if (extension == 'jpg' || extension == 'png' || extension == 'gif' || extension == 'jpeg') {
+        if (extension.toLowerCase() == 'jpg' || extension.toLowerCase() == 'png' || extension.toLowerCase() == 'gif' || extension.toLowerCase() == 'jpeg') {
             document.getElementById('create-btn').disabled = false
             document.getElementById('notify-box').innerHTML = ''
             const imageSrc = window.URL.createObjectURL(file)

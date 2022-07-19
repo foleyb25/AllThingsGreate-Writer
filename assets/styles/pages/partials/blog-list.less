@@ -1,0 +1,76 @@
+#blog-list {
+    [v-cloak] { display:none; }
+
+    .article-box {
+        border: 1px solid black;
+        height: 155px;
+    }
+
+    .font-revans-medium {
+        font-family: 'Revans-medium';
+    }
+
+    .article-box:hover {
+        transform: scale(1.02);
+    }
+
+    .rated {
+        color: rgb(248, 211, 3);
+    }
+
+    .unrated {
+        color: rgb(46, 43, 43);
+    }
+
+    .title-container {
+        text-overflow: ellipsis;
+        word-wrap: break-word;
+    }
+
+    .line-clamp p{
+        display: -webkit-box;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical; 
+        overflow: hidden; 
+    }
+
+    .center-cropped {
+        object-position: center; /* Center the image within the element */
+        object-fit: cover;
+    }
+
+    @media (min-width: 0px) and (max-width: 279px){
+        .article-box {
+            max-height: 90px;
+            font-size: .5rem;
+        }
+    }
+
+    @media (min-width: 279px) and (max-width: 345px){
+        .article-box {
+            max-height: 110px;
+            font-size: .6rem;
+        }
+    }
+
+    @media (min-width: 345px) and (max-width: 460px){
+        .article-box {
+            max-height: 115px;
+            font-size: .7rem;
+        }
+    }
+
+    @media (min-width: 460px) and (max-width: 576px) {
+        .article-box {
+            max-height: 137px;
+            font-size: .85rem;
+        }
+    }
+
+    @media (min-width: 576px) and (max-width: 768px) {
+        .article-box {
+            font-size: 1rem;
+        }
+    }
+
+}

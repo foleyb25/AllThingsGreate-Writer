@@ -1,39 +1,35 @@
-<!-- Check Styling for this partial in views/pages/homepage -->
-
-<div class="article-box">
-    <div class="image-box">
-        <img class="thumbnail-img" :src="blog.imageUrl" alt="" style="width: 100%; height: 100%">
+<div id="blog-list">
+    <div class="article-box float-left">
+        <div class="image-box w-25 h-75 bg-secondary float-left border-right border-dark">
+            <img class="center-cropped w-100 h-100 border border-dark" :src="blog.imageUrl" alt="">
+        </div>
+        <div class="title-container overflow-hidden w-75 h-75 p-6 float-left">
+            <div class="title-box float-left font-revans-medium font-weight-bold line-clamp h-100 w-75 p-2">
+                <p class="title-p ">{{blog.title}}</p>
+            </div>
+            <div class="comment-indicator d-flex flex-column align-items-start h-100 w-25 p-2">
+                <span class="fas fa-comments p-1" aria-hidden="true"> {{blog.numComments}}</span>
+                <span class="fas fa-eye p-1" aria-hidden="true"> {{blog.views}}</span>
+            </div>
+        </div>
+        <div class="bottom-box overflow-hidden float-left h-25 w-100 d-flex flex-row justify-content-between border-top border-dark">
+            <div class="font-revans-medium h-100 w-25 font-weight-bold d-flex justify-content-center align-items-center">
+                <div v-if='blog.writer.nickName == ""'>{{blog.writer.fullName}}</div>
+                <div v-if='blog.writer.nickName != ""'>{{blog.writer.nickName}}</div>
+            </div>
+            <div class="rating-box h-100 w-25 d-flex justify-content-center align-items-center" div v-if="blog.numberOfRatings > 0">
+                <div class="rating-p">{{ (blog.rating) / (blog.numberOfRatings)}}/5 <span class="fa fa-star rated"></span></div>
+            </div>
+            <div class="rating-box h-100 w-25 d-flex justify-content-center align-items-center" div v-if="blog.numberOfRatings == 0">
+                <div class="rating-p">0/5 <span class="fa fa-star unrated"></span></div>
+            </div>
+            <div class="font-revans-medium h-100 w-25 d-flex justify-content-center align-items-center">
+                #{{blog.category}}
+            </div>
+            <div class="font-revans-medium font-italic h-100 w-25 d-flex justify-content-center align-items-center text-secondary">
+                <!-- Can use .toLocaleTimeString -->
+                {{blog.fromNow}}
+            </div>
+        </div> 
     </div>
-    <div class="title-container">
-        <div class="title-box line-clamp">
-            <p class="title-p">{{blog.title}}</p>
-        </div>
-        <div class="comment-indicator" style="text-align: right;margin-top: 4px; padding-right: 4px;">
-            <span class="fas fa-comments" aria-hidden="true"> {{blog.numComments}}</span>
-            <span class="fas fa-eye" aria-hidden="true"> {{blog.views}}</span>
-        </div>
-        <!-- <div class="preview-box line-clamp">
-            <p class="preview-p">{{blog.previewText}}</p>
-        </div> -->
-    </div>
-    <div class="under-box">
-        <div class="author-box">
-                <p v-if='blog.writer.nickName == ""'class="author-p">{{blog.writer.fullName}}</p>
-                <p v-if='blog.writer.nickName != ""'class="author-p">{{blog.writer.nickName}}</p>
-            
-        </div>
-        <div class="rating-box" div v-if="blog.numberOfRatings > 0">
-            <p class="rating-p">{{ (blog.rating) / (blog.numberOfRatings)}}/5 <span class="fa fa-star rated"></span></p>
-        </div>
-        <div class="rating-box" div v-if="blog.numberOfRatings == 0">
-            <p class="rating-p">0/5 <span class="fa fa-star unrated"></span></p>
-        </div>
-        <div class="category-box">
-            <p class="category-p">#{{blog.category}}</p>
-        </div>
-        <div class="timestamp-box">
-            <!-- Can use .toLocaleTimeString -->
-            <p class="timestamp-p">{{blog.fromNow}}</p>
-        </div>
-    </div> 
 </div>

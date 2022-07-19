@@ -10,7 +10,7 @@ module.exports = {
     exits: {
   
       success: {
-        viewTemplatePath: 'pages/search/search-film-view'
+        viewTemplatePath: 'pages/search/search-screenplay-view'
       }
   
     },

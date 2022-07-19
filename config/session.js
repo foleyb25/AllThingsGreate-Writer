@@ -22,11 +22,11 @@ module.exports.session = {
   * of your users, forcing them to log in again.                             *
   *                                                                          *
   ***************************************************************************/
-  secret: '71fc6ab6da8da266a72a6405b96716a9',
+  secret: 'cd18d3adb6529454eaf776d044275333',
 
   adapter: 'connect-mongo',
   url: 'mongodb://drsourceadmin:B184you2!@cluster0-shard-00-00.ygsuq.mongodb.net:27017,cluster0-shard-00-01.ygsuq.mongodb.net:27017,cluster0-shard-00-02.ygsuq.mongodb.net:27017/ATGDB?ssl=true&replicaSet=atlas-11hj13-shard-0&authSource=admin&retryWrites=true&w=majority',
-  collection: 'sessions',
+  collection: 'writer-sessions',
   ssl: true,
   
 

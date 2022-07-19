@@ -3,9 +3,9 @@ module.exports = {
     description: 'save watch service data to database',
   
     inputs: {
-      watchservice: {
+      screenplay: {
         type: 'ref',
-        description: 'watch service to persist'
+        description: 'screenplay object'
       },
     },
   
@@ -24,24 +24,42 @@ module.exports = {
   
   
     fn: async function (inputs, exits) {
+        var _ = require("underscore")
+        var provider_ids = []
+        var DB_provider_ids = []
+        var provider_ids_to_delete = []
         //1) call Flixed API getMovie endpoint using imdb id with string pruned
         //2) get array of each service associated with screenplay
         //3) iterate over array and call get service API endpoint for each streaming service and persist to database
-        const axios = require("axios");
-        const options = {
-            method: 'GET',
-            url: 'https://api.themoviedb.org/3/search/multi?api_key=47e95b6f1f16930b4bab4ac1677815c7&language=en-US&query=+'+inputs.search_string+'&page='+inputs.page_num+'&include_adult=false',
-            headers: {
+        // const movie_details = await sails.helpers.flixed.getflixedmoviedetails(inputs.screenplay)
+        var watchServiceList
+        if(inputs.screenplay.media_type == "series") {
+          watchServiceList = await sails.helpers.tmdb.gettvwatchproviders(inputs.screenplay.tmdb_id)
+        } else if (inputs.screenplay.media_type == "movie") {
+          watchServiceList = await sails.helpers.tmdb.getmoviewatchproviders(inputs.screenplay.tmdb_id)
+        } else {
 
-            }
-          };
-          
-          axios.request(options).then(function (response) {
-              return exits.success(response.data)
-          }).catch(function (error) {
-              console.error(error);
-          });
+        }
+        //delete from the DB, we're going to start a clean slate
+        const destroy_result = await Watchservice.destroy({screenplay: inputs.screenplay.id})
+        const streamingList = watchServiceList.results.US.flatrate
+        for(var i in streamingList) {
+          const Watchservice_result = await Watchservice.create({
+            tmdb_provider_id: streamingList[i].provider_id,
+            name: streamingList[i].provider_name,
+            logo_url: 'https://image.tmdb.org/t/p/original'+streamingList[i].logo_path,
+            screenplay: inputs.screenplay.id,
+          })
+        }
+      
+
+
         
+        
+        
+        
+        
+        return exits.success(watchServiceList.results.US)
     
       }
   };

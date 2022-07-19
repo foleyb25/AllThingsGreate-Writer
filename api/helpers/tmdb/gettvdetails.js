@@ -34,7 +34,7 @@ module.exports = {
             }
           };
           
-          axios.request(options).then(function (response) {
+          await axios.request(options).then(function (response) {
               return exits.success(response.data)
           }).catch(function (error) {
               console.error(error);

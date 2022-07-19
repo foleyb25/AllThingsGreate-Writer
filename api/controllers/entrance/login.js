@@ -8,7 +8,7 @@ module.exports = {
 
 
   extendedDescription:
-`This action attempts to look up the user record in the database with the
+`This action attempts to look up the writer record in the database with the
 specified email address.  Then, if such a user exists, it uses
 bcrypt to compare the hashed password from the database with the provided
 password attempt.`,
@@ -102,10 +102,8 @@ and exposed as \`req.me\`.)`
       } else {
         this.req.session.cookie.maxAge = sails.config.custom.rememberMeCookieMaxAge;
       }
-    }//ﬁ
+    }
 
-    // Modify the active session instance.
-    // (This will be persisted when the response is sent.)
     this.req.session.userId = userRecord.id;
 
   }

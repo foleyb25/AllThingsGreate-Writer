@@ -1,0 +1,50 @@
+<header id="page-header" class="navbar navbar-expand-xl navbar-dark bg-dark flex-column flex-md-row justify-content-between">
+    <a class="navbar-brand mr-0" href="/"><img class="logo" alt="All Things Great logo" src="/images/atg-writer-logo.png"></a>
+    <div class="nav-button-container">
+      <a class="btn btn-outline-info btn-sm" href="/">Home</a>
+      <% if(me) { %>
+        <button class="btn btn-sm btn-outline-info collapsed" type="button" data-toggle="collapse" data-target="#navbar-rating" aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
+          Rate
+        </button>
+        <button class="btn btn-sm btn-outline-info collapsed" type="button" data-toggle="collapse" data-target="#navbar-account" aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
+          Account
+        </button>
+      <% } %>
+  </div>
+</header>
+<header class="navbar-dark bg-dark">
+  <div class="navbar-collapse justify-content-end collapse" id="navbar-rating">
+    <div class="navbar-nav flex-row">
+      <ul class="nav-ul navbar-nav" style="font-family: Revans-medium;">
+        <li class="li-text">
+          <div>Rate</div>
+          <div class="divider"></div>
+        </li>
+        <a class="nav-item nav-link ml-2 ml-md-0 mr-2 mr-md-0" href="/search/screenplay">Rate a screenplay</a>
+      </ul>
+    </div>
+  </div>
+</header>
+<header class="navbar-dark bg-dark">
+  <div class="navbar-collapse justify-content-end collapse" id="navbar-account">
+    <div class="navbar-nav flex-row">
+      <ul class="nav-ul navbar-nav" style="font-family: Revans-medium;">
+        <li class="li-text">
+          <div>Account</div>
+          <div class="divider"></div>
+        </li>
+        <% if(me) { %>
+          <a class="nav-item nav-link ml-2 ml-md-0 mr-2" href="/profile">Profile</a>
+          <a class="nav-item nav-link ml-2 ml-md-0 mr-2" href="/account">Account Settings</a>
+          <a class="nav-item nav-link ml-2 ml-md-0 mr-2" href="/logout">Sign out</a>
+          <% if(me.isSuperAdmin) { %>
+          <a class="btn btn-outline-info" href="/blog/review">Review Blog</a>
+          <% } %>
+          <% } else { %>
+          <!-- LOGGED-OUT NAVIGATION -->
+          <a class="nav-item nav-link ml-2 ml-md-0 mr-2" href="/login">Login</a>
+          <% } %>   
+      </ul>
+    </div>
+  </div>
+</header>

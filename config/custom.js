@@ -51,25 +51,25 @@ module.exports.custom = {
   *                                   *
   *                                                                         *
   **************************************************************************/
- sendgridSecret: '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',
+ sendgridSecret: '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',
   //--------------------------------------------------------------------------
   // /\  Configure this to enable support for automated emails.
   // ||  (Important for password recovery, verification, contact form, etc.)
   //--------------------------------------------------------------------------
 
   // The sender that all outgoing emails will appear to come from.
-  fromEmailAddress: 'customer.service@atgr8.com',
-  fromName: 'The All Things Great Team',
+  fromEmailAddress: 'support@allthingsgreat.com',
+  fromName: 'Password Recovery',
 
   // Email address for receiving support messages & other correspondences.
   // > If you're using the default privacy policy, this will be referenced
   // > as the contact email of your "data protection officer" for the purpose
   // > of compliance with regulations such as GDPR.
-  internalEmailAddress: 'customer.service@atgr8.com',
+  internalEmailAddress: 'support@allthingsgreat.com',
 
   // Whether to require proof of email address ownership any time a new user
   // signs up, or when an existing user attempts to change their email address.
-  verifyEmailAddresses: false,
+  verifyEmailAddresses: true,
 
   /**************************************************************************
   *                                                                         *
