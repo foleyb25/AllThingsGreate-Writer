@@ -59,6 +59,7 @@ module.exports = {
         }
         if (!DB_screenplay) {
             //create new record
+            var result = !tmdb_screenplay_to_persist.number_of_seasons ? '': tmdb_screenplay_to_persist.number_of_seasons
             const screenplay_record = await Screenplay.create({
             tmdb_id: tmdb_screenplay_to_persist.id,
             imdb_id: inputs.MDBA_screenplay.imdbID,
@@ -66,7 +67,7 @@ module.exports = {
             overview: tmdb_screenplay_to_persist.overview,
             plot: inputs.MDBA_screenplay.Plot,
             media_type: inputs.MDBA_screenplay.Type,
-            runtime: tmdb_screenplay_to_persist.runtime,
+            runtime: inputs.MDBA_screenplay.Runtime,
             revenue: tmdb_screenplay_to_persist.revenue,
             budget: tmdb_screenplay_to_persist.budget,
             box_office: inputs.MDBA_screenplay.BoxOffice,
@@ -84,7 +85,7 @@ module.exports = {
             releasedate: inputs.MDBA_screenplay.Released,
             genre: inputs.MDBA_screenplay.Genre,
             writers: inputs.MDBA_screenplay.Writer,
-            num_seasons: !tmdb_screenplay_to_persist.num_seasons ? '': tmdb_screenplay_to_persist.num_seasons,
+            num_seasons: !tmdb_screenplay_to_persist.number_of_seasons ? 0: tmdb_screenplay_to_persist.number_of_seasons,
             }).fetch()
             return exits.success(screenplay_record)
         } else {

@@ -225,6 +225,7 @@ body {
 }
 #page-wrap header .logo {
   height: 20px;
+  display: block;
 }
 #page-wrap header a {
   cursor: pointer;
@@ -772,6 +773,93 @@ body {
   }
   [id='498'] .mobile-spacer {
     display: inline;
+  }
+}
+#edit-css .center-cropped {
+  object-position: center;
+  /* Center the image within the element */
+  object-fit: cover;
+  width: 150px;
+  height: 150px;
+  border: solid 1px #5e5e5e;
+}
+#edit-css iframe {
+  max-width: 100%;
+}
+#edit-css table {
+  max-width: 100% !important;
+  height: auto;
+}
+#edit-css img[style] {
+  max-width: 100% !important;
+  height: auto !important;
+}
+#edit-css img {
+  max-width: 100% !important;
+  height: auto !important;
+}
+@media (min-width: 0px) and (max-width: 279px) {
+  #edit-css iframe[height] {
+    height: 100px;
+  }
+}
+@media (min-width: 279px) and (max-width: 345px) {
+  #edit-css iframe[height] {
+    height: 130px;
+  }
+}
+@media (min-width: 345px) and (max-width: 460px) {
+  #edit-css iframe[height] {
+    height: 180px;
+  }
+}
+@media (min-width: 460px) and (max-width: 576px) {
+  #edit-css iframe[height] {
+    height: 220px;
+  }
+}
+#review-single-css .center-cropped {
+  object-position: center;
+  /* Center the image within the element */
+  object-fit: cover;
+  width: 64px;
+  height: 64px;
+  border-radius: 100px;
+  border: solid 1px #5e5e5e;
+}
+#review-single-css iframe {
+  max-width: 100%;
+}
+#review-single-css img[style] {
+  max-width: 100% !important;
+  height: auto !important;
+}
+#review-single-css img {
+  max-width: 100% !important;
+  height: auto !important;
+}
+#review-single-css table {
+  max-width: 100% !important;
+  height: auto;
+}
+@media (min-width: 0px) and (max-width: 279px) {
+  #review-single-css iframe[height] {
+    height: 100px;
+  }
+}
+@media (min-width: 279px) and (max-width: 345px) {
+  #review-single-css iframe[height] {
+    height: 130px;
+  }
+}
+@media (min-width: 345px) and (max-width: 460px) {
+  #review-single-css iframe[height] {
+    height: 180px;
+  }
+}
+@media (min-width: 460px) and (max-width: 576px) {
+  #review-single-css iframe[height] {
+    height: 220px;
   }
 }
 #review-screenplay-view {

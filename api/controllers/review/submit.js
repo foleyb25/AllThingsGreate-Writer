@@ -9,6 +9,7 @@ module.exports = async function(req,res) {
     var is_10_and_blog_blank = false
     var need_www = false
     var invalid_url = false
+    var formatted_url = ''
     const axios = require("axios");
 
     //CHECK URL VALIDITY
@@ -35,7 +36,7 @@ module.exports = async function(req,res) {
             });
           }
           const protocol = blog_url.substring(0, blog_url.indexOf('w'))
-          const formatted_url = blog_url.replace(protocol, '')
+          formatted_url = blog_url.replace(protocol, '')
           const options = {
               headers: {
                   'Access-Control-Allow-Origin' : '*',
@@ -81,7 +82,7 @@ module.exports = async function(req,res) {
       try {
         persisted_screenplay = await sails.helpers.persistscreenplay(screenplay);
         //2) persist review
-        persisted_review = await sails.helpers.persistscreenplayreview(persisted_screenplay.id, req.me.id, rating, blog_url);
+        persisted_review = await sails.helpers.persistscreenplayreview(persisted_screenplay.id, req.me.id, rating, formatted_url);
 
         //3) persist watchService(s)
         persisted_service = await sails.helpers.persistwatchservice(persisted_screenplay)

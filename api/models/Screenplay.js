@@ -66,7 +66,7 @@ module.exports = {
         },
 
         num_seasons: {
-            type: 'string'
+            type: 'number'
         },
 
         runtime: {

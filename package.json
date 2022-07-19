@@ -22,7 +22,8 @@
     "sails-hook-sockets": "^2.0.0",
     "sails-mongo": "^1.2.0",
     "skipper-better-s3": "^2.3.0",
-    "skipper-s3": "^0.6.0"
+    "skipper-s3": "^0.6.0",
+    "sweetalert": "^2.1.2"
   },
   "devDependencies": {
     "eslint": "5.16.0",

@@ -34,6 +34,9 @@ module.exports = Object.assign({}, PRODUCTION_CONFIG, {
       // /\  Hard-code your staging db `url`.
       // ||  (or use system env var: `sails_datastores__default__url`)
       //--------------------------------------------------------------------------
+      adapter: 'sails-mongo',
+      url: 'mongodb://drsourceadmin:B184you2!@cluster0-shard-00-00.ygsuq.mongodb.net:27017,cluster0-shard-00-01.ygsuq.mongodb.net:27017,cluster0-shard-00-02.ygsuq.mongodb.net:27017/ATGDB-Stag?ssl=true&replicaSet=atlas-11hj13-shard-0&authSource=admin&retryWrites=true&w=majority',
+      ssl: true,
     })
   }),
 
