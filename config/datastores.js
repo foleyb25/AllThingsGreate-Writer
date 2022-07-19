@@ -52,7 +52,7 @@ module.exports.datastores = {
     // url: 'mysql://user:password@host:port/database',
 
     adapter: 'sails-mongo',
-    url: 'mongodb://drsourceadmin:B184you2!@cluster0-shard-00-00.ygsuq.mongodb.net:27017,cluster0-shard-00-01.ygsuq.mongodb.net:27017,cluster0-shard-00-02.ygsuq.mongodb.net:27017/ATGDB?ssl=true&replicaSet=atlas-11hj13-shard-0&authSource=admin&retryWrites=true&w=majority',
+    url: 'mongodb://drsourceadmin:B184you2!@cluster0-shard-00-00.ygsuq.mongodb.net:27017,cluster0-shard-00-01.ygsuq.mongodb.net:27017,cluster0-shard-00-02.ygsuq.mongodb.net:27017/ATGDB-Stag?ssl=true&replicaSet=atlas-11hj13-shard-0&authSource=admin&retryWrites=true&w=majority',
     ssl: true,
 
 

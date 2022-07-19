@@ -3,7 +3,7 @@
 <div class="col text-center">
     <a href="/blog/create" class="btn btn-info">Add New Blog</a>
 </div>  
-<div id="app" v-cloak class="d-flex flex-column justify-content-center">
+<div id="app" v-cloak>
     <div class="container-fluid d-flex flex-column justify-content-center" style="max-width: 620px;">
         <div v-for="blog in blogs" class="mt-5">
             <a :href="'/blog/edit/' +blog.id">
