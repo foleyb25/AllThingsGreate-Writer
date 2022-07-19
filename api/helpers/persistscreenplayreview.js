@@ -49,7 +49,7 @@ module.exports = {
           writer: inputs.writer_id,
           screenplay: inputs.screenplay_id,
           score: inputs.rating,
-          blog_url: (blog_url != '') ? 'https://'+inputs.blog_url : '',
+          blog_url: !inputs.blog_url ? '' : 'https://'+inputs.blog_url,
         }).fetch();
         return exits.success(screenplay_review_record)
       } else {
