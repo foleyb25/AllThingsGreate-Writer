@@ -540,6 +540,11 @@ body {
   #screenplay-container .year-released {
     font-size: .4rem;
   }
+  #screenplay-container .image-box {
+    width: 61%;
+    height: 61%;
+    margin: 5px auto;
+  }
 }
 @media (min-width: 354px) and (max-width: 460px) {
   #screenplay-container .screenplay-container-class {
@@ -548,9 +553,15 @@ body {
   }
   #screenplay-container .title-box {
     font-size: .5rem;
+    height: 35px;
   }
   #screenplay-container .year-released {
     font-size: .5rem;
+  }
+  #screenplay-container .image-box {
+    width: 61%;
+    height: 61%;
+    margin: 5px auto;
   }
 }
 @media (min-width: 460px) and (max-width: 586px) {
@@ -560,6 +571,7 @@ body {
   }
   #screenplay-container .title-box {
     font-size: .6rem;
+    height: 40px;
   }
   #screenplay-container .button-box {
     font-size: .6rem;
