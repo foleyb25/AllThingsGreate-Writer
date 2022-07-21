@@ -63,7 +63,7 @@ module.exports = {
             const screenplay_record = await Screenplay.create({
             tmdb_id: tmdb_screenplay_to_persist.id,
             imdb_id: inputs.MDBA_screenplay.imdbID,
-            title: inputs.MDBA_screenplay.title,
+            title: inputs.MDBA_screenplay.Title,
             overview: tmdb_screenplay_to_persist.overview,
             plot: inputs.MDBA_screenplay.Plot,
             media_type: inputs.MDBA_screenplay.Type,
