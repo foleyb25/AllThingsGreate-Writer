@@ -810,24 +810,39 @@ body {
   max-width: 100% !important;
   height: auto !important;
 }
+#edit-css .instagram-media {
+  border-radius: 25px !important;
+}
 @media (min-width: 0px) and (max-width: 279px) {
   #edit-css iframe[height] {
     height: 100px;
+  }
+  #edit-css .instagram-media {
+    height: 725px !important;
   }
 }
 @media (min-width: 279px) and (max-width: 345px) {
   #edit-css iframe[height] {
     height: 130px;
   }
+  #edit-css .instagram-media {
+    height: 725px !important;
+  }
 }
 @media (min-width: 345px) and (max-width: 460px) {
   #edit-css iframe[height] {
     height: 180px;
   }
+  #edit-css .instagram-media {
+    height: 825px !important;
+  }
 }
-@media (min-width: 460px) and (max-width: 576px) {
+@media (min-width: 460px) and (max-width: 612px) {
   #edit-css iframe[height] {
     height: 220px;
+  }
+  #edit-css .instagram-media {
+    height: 950px !important;
   }
 }
 #review-single-css .center-cropped {
@@ -854,24 +869,39 @@ body {
   max-width: 100% !important;
   height: auto;
 }
+#review-single-css .instagram-media {
+  border-radius: 25px !important;
+}
 @media (min-width: 0px) and (max-width: 279px) {
   #review-single-css iframe[height] {
     height: 100px;
+  }
+  #review-single-css .instagram-media {
+    height: 725px !important;
   }
 }
 @media (min-width: 279px) and (max-width: 345px) {
   #review-single-css iframe[height] {
     height: 130px;
   }
+  #review-single-css .instagram-media {
+    height: 725px !important;
+  }
 }
 @media (min-width: 345px) and (max-width: 460px) {
   #review-single-css iframe[height] {
     height: 180px;
   }
+  #review-single-css .instagram-media {
+    height: 825px !important;
+  }
 }
-@media (min-width: 460px) and (max-width: 576px) {
+@media (min-width: 460px) and (max-width: 612px) {
   #review-single-css iframe[height] {
     height: 220px;
+  }
+  #review-single-css .instagram-media {
+    height: 950px !important;
   }
 }
 #review-screenplay-view {
