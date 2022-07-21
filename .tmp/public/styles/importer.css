@@ -795,6 +795,9 @@ body {
   height: 150px;
   border: solid 1px #5e5e5e;
 }
+#edit-css p {
+  width: 100%;
+}
 #edit-css iframe {
   max-width: 100%;
 }
@@ -853,6 +856,9 @@ body {
   height: 64px;
   border-radius: 100px;
   border: solid 1px #5e5e5e;
+}
+#review-single-css p {
+  width: 100%;
 }
 #review-single-css iframe {
   max-width: 100%;
