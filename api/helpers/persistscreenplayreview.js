@@ -56,7 +56,7 @@ module.exports = {
         console.log("A review has already been made for this screenplay, updating record...")
         const screenplay_review_record = await Screenplayreview.update({id: review_record.id}).set({
           score: Number(inputs.rating),
-          blog_url: 'https://'+inputs.blog_url,
+          blog_url: !inputs.blog_url ? '' : 'https://'+inputs.blog_url,
         }).fetch();
             
         return exits.success(screenplay_review_record)

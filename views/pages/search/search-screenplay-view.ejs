@@ -15,7 +15,7 @@
         <div class="d-flex justify-content-center">
             <div v-if="loading" class="loader"></div>
         </div>
-        <div v-if="noResults && !loading">No results found</div>
+        <div v-if="noResults && !loading" class="w-100 text-center">No results found</div>
         <button v-if="screenplayList!=undefined && isMore && !loading"class="btn btn-info"v-on:click="search()">Load More</button>
         <div v-if="!isMore && pageNum!=0 && !noResults && !loading" >No More screenplays To Show</div>
     </div>

@@ -76,14 +76,12 @@ module.exports = async function(req,res) {
   }
   //END CHECK URL VALIDITY
 
-
-
-    //1) persist screenplay
+    
       try {
+        //1) persist screenplay
         persisted_screenplay = await sails.helpers.persistscreenplay(screenplay);
         //2) persist review
         persisted_review = await sails.helpers.persistscreenplayreview(persisted_screenplay.id, req.me.id, rating, formatted_url);
-
         //3) persist watchService(s)
         persisted_service = await sails.helpers.persistwatchservice(persisted_screenplay)
 

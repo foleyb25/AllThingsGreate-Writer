@@ -42,22 +42,20 @@ module.exports = {
         }
         //delete from the DB, we're going to start a clean slate
         const destroy_result = await Watchservice.destroy({screenplay: inputs.screenplay.id})
-        const streamingList = watchServiceList.results.US.flatrate
-        for(var i in streamingList) {
-          const Watchservice_result = await Watchservice.create({
-            tmdb_provider_id: streamingList[i].provider_id,
-            name: streamingList[i].provider_name,
-            logo_url: 'https://image.tmdb.org/t/p/original'+streamingList[i].logo_path,
-            screenplay: inputs.screenplay.id,
-          })
+        if(Object.keys(watchServiceList.results).length != 0) {
+          const streamingList = watchServiceList.results.US.flatrate
+          for(var i in streamingList) {
+            const Watchservice_result = await Watchservice.create({
+              tmdb_provider_id: streamingList[i].provider_id,
+              name: streamingList[i].provider_name,
+              logo_url: 'https://image.tmdb.org/t/p/original'+streamingList[i].logo_path,
+              screenplay: inputs.screenplay.id,
+            })
+          }
+          
+        } else {
+          console.log("No Watch Services found for: "+inputs.screenplay.title)
         }
-      
-
-
-        
-        
-        
-        
         
         return exits.success(watchServiceList.results.US)
     
