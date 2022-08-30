@@ -16,6 +16,10 @@
                 <div v-if="blog.isArchived">
                     <button style="background-color: rgb(77, 14, 133); color:white; margin: auto; margin-top: 8px; border-radius: 8px;" v-on:click="unarchive(blog)">Un-Archive Blog</button>
                 </div>
+                <div v-if="!blog.isReviewed">
+                    <div style="background-color: rgb(240, 244, 0); color:rgb(0, 0, 0); margin: auto; margin-top: 5px; padding: 3px; border-radius: 8px; border: 1px solid black">Needs Reviewed</div>
+                </div>
+
             </div>
         </div>
         <div v-if="isMore" style="margin: auto; text-align: center;">
